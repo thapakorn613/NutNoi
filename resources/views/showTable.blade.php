@@ -16,20 +16,18 @@
                     @endif
                     <table class="table table-bordered table-striped">
                         <tr> 
-                        <th> ID </th>
-                        <th>Project Name</th>
-                        <th>Teacher ID 1</th>
-                        <th>Teacher ID 2</th>
-                        <th>Teacher ID 3</th>
+                        <th>Booking ID </th>
+                        <th>DateTime</th>
+                        <th>Project ID</th>
                         <th>Add</th>
-                        @foreach($projectTable as $key => $data)<tr>
+                        @foreach($timebookingTable as $key => $data)<tr>
                         
                             <br>  
-                            <td>{{$data->id}}</td>
-                            <td>{{$data->project_name}}</td>
-                            <td>{{$data->teacher_id1}}</td>
-                            <td>{{$data->teacher_id2}}</td>
-                            <td>{{$data->teacher_id3}}</td>         
+                            <td>{{$data->booking_id}}</td>
+                            <td>{{$data->datetime}}</td>
+                            <td>{{$data->project_id}}</td>
+                            <td><a href="{{ action('UserController@setBooking',$data->booking_id)}}" class="btn btn-primary">Add</a></td> 
+                                  
                         </tr>
                         @endforeach
                     </table>   
