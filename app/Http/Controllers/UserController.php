@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -84,7 +85,6 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $user->name = $request->get('name');
-        $user->surname = $request->get('surname');
         $user->birthday = $request->get('birthday');
         $user->blood_group = $request->get('blood_group');
         $user->age = $request->get('age');
@@ -119,6 +119,16 @@ class UserController extends Controller
 
       //dd($id);
 
+    }
+    public function profile()
+    {
+        $user = Auth::user();
+        $_booking_id = Auth::user()->booking_id;
+        $booking = DB::table('timebooking')
+        ->where('booking_id',$_booking_id)->get();
+       
+        
+        return view('profile',compact('user','booking') );
     }
 
 
