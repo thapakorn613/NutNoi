@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\Http\\Controllers",
+    "\\bootstrap",
+    "\\config",
+    "\\database",
+    "\\database\\factories",
+    "\\database\\migrations",
+    "\\database\\seeds",
+    "\\resources\\views"
+  ],
+  "SelectedNode": "\\.env.example",
+  "PreviewInSolutionExplorer": false
+}
