@@ -14,19 +14,25 @@
                         </div>
                         
                     @endif
-                    <table boarder="1">
-                        @foreach($projectTable as $key => $data)
-                        <tr>
+                    <table class="table table-bordered table-striped">
+                        <tr> 
+                        <th> ID </th>
+                        <th>Project Name</th>
+                        <th>Teacher ID 1</th>
+                        <th>Teacher ID 2</th>
+                        <th>Teacher ID 3</th>
+                        <th>Add</th>
+                        @foreach($projectTable as $key => $data)<tr>
+                        
                             <br>  
                             <td>{{$data->id}}</td>
                             <td>{{$data->project_name}}</td>
                             <td>{{$data->teacher_id1}}</td>
                             <td>{{$data->teacher_id2}}</td>
-                            <td>{{$data->teacher_id3}}</td>
-                                          
+                            <td>{{$data->teacher_id3}}</td>         
                         </tr>
                         @endforeach
-                        </table>   
+                    </table>   
                 </div>
             </div>
         </div>
