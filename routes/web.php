@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/home/table', 'HomeController@showTable');
+Route::get('/profile', function(){
+    $profile = DB::table('users')->get();
+    $booking = DB::table('timebooking')->get();
+    return view('profile', ['profile' => $profile],['booking' => $booking]);
+});
 
 Route::get('/home/table', function () {
 
