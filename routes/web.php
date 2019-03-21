@@ -22,9 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/home/table', 'HomeController@showTable');
 
 Route::get('/home/table', function () {
-
     $timebookingTable = DB::table('timebooking')->get();
-    return view('showTable', ['timebookingTable' => $timebookingTable]);
+    $id = Auth::user()->project_id;
+    
+    return view('showTable', ['timebookingTable' => $timebookingTable],['id' => $id]);
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');

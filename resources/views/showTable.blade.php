@@ -12,24 +12,20 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                        
                     @endif
                     <table class="table table-bordered table-striped">
                         <tr> 
-                        <th>Booking ID </th>
-                        <th>DateTime</th>
+                        <th>Date Time</th>
                         <th>Project ID</th>
                         <th>Add</th>
-                        @foreach($timebookingTable as $key => $data)<tr>
-                        
-                            <br>  
-                            <td>{{$data->booking_id}}</td>
-                            <td>{{$data->datetime}}</td>
-                            <td>{{$data->project_id}}</td>
-                            <td><a href="{{ action('UserController@setBooking',$data->booking_id)}}" class="btn btn-primary">Add</a></td> 
-                                  
-                        </tr>
-                        @endforeach
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $id)
+                                <td>{{$timebookingTable[$i]->datetime}}</td>
+                                <td>{{$timebookingTable[$i]->project_id}}</td>
+                                <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-primary">Add</a></td> 
+                             @endif
+                            </tr>
+                            @endfor
                     </table>   
                 </div>
             </div>
