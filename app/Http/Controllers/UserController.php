@@ -128,7 +128,7 @@ class UserController extends Controller
         DB::table('users')
         ->where('id', $_id)
         ->update(['booking_id' => $id]);
-       return view('home');
+       return view('warning');
     }
 
 

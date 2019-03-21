@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">select your time for Exam</div>
+                <div class="card-header">Select your time for examination</div>
 
                 <div class="card-body">
                     @if (session('status'))
