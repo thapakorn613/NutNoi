@@ -17,9 +17,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')    
+    ->name('home');
+
+Route::get('/manager', 'AdminController@admin')    
+    ->middleware('is_admin')    
+    ->name('admin');
+
+Route::any('/manager/{id?}','AdminController@toCheck');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/profile/{id?}',  'UserController@profile');
+
+Route::any('/admincheck/{id?}',  'UserController@admincheck');
 
 Route::get('/home/table', function () {
     $timebookingTable = DB::table('timebooking')->get();
@@ -29,3 +40,6 @@ Route::get('/home/table', function () {
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

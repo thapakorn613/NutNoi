@@ -15,18 +15,20 @@
                     @endif
                     <table class="table table-bordered table-striped">
                         <tr> 
-                        <th>Date Time</th>
-                        <th>Project ID</th>
+                        <th>wait id</th>
+                        <th>Project ID1</th>
+                        <th>Project ID2</th>
+                        <th>Project ID3</th>
                         <th>Add</th>
                         <tr>
-                        @for ($i = 0; $i < count($timebookingTable ); $i++)
-                            @if ( $timebookingTable[$i]->project_id == $id)
-                                <td>{{$timebookingTable[$i]->datetime}}</td>
-                                <td>{{$timebookingTable[$i]->project_id}}</td>
-                                <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-primary">Add</a></td>
-                           @endif
+                       
+                            <td>{{$waitTable->wait_id}}</td>
+                            <td>{{$waitTable->booking_id1}}</td>
+                            <td>{{$waitTable->booking_id2}}</td>
+                            <td>{{$waitTable->booking_id3}}</td>
+                            <td><a href="" class="btn btn-primary">Confirm</a></td>
                         </tr>
-                        @endfor
+                    
                     </table>   
                 </div>
             </div>
