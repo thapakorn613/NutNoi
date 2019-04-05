@@ -168,10 +168,6 @@ class UserController extends Controller
         else{
             return view('warning');
         }
-       
-
-
-        
         
        return view('warning');
     }
@@ -184,12 +180,18 @@ class UserController extends Controller
 
     }
 
+    public function admincheck($id)
+    {
+        $waitTable= DB::table('waitconfirm')
+        ->where('project_id',$id)->first();
+       return view('checkTime' , ['waitTable' => $waitTable]);
+
+    }
+
     public function doctor()
     {
         return view('admin.manager');
     }
-
-
 
     public function update($id)
     {

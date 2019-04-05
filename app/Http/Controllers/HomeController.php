@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -20,21 +19,10 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('home');
     }
-    public function showTable()
-    {
-        return view('showTable');
-    }
-    public function profile()
-    {
-      
-        return view('profile');
-    }
-    
 }
-
