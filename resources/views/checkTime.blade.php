@@ -14,20 +14,34 @@
                         </div>
                     @endif
                     <table class="table table-bordered table-striped">
-                        <tr> 
-                        <th>wait id</th>
-                        <th>Project ID1</th>
-                        <th>Project ID2</th>
-                        <th>Project ID3</th>
-                        <th>Add</th>
-                        <tr>
+                        
                        
-                            <td>{{$waitTable->wait_id}}</td>
-                            <td>{{$waitTable->booking_id1}}</td>
-                            <td>{{$waitTable->booking_id2}}</td>
-                            <td>{{$waitTable->booking_id3}}</td>
-                            <td><a href="" class="btn btn-primary">Confirm</a></td>
-                        </tr>
+                        <td>Project_id</td><td>{{$waitTable->project_id}}</td>
+
+                        @for ($i = 0; $i < count($time); $i++)
+                        @if ( $time[$i]->booking_id ==$waitTable->booking_id1)
+                        <tr><td>{{$waitTable->booking_id1}}</td><td>{{$time[$i]->datetime}}</td>
+                        <td><a href="{{ action('AdminController@ok',[$waitTable->booking_id1 , $waitTable->project_id])}}" class="btn btn-primary">confirm</a></td>
+                        @endif
+                        @endfor
+
+                        @for ($i = 0; $i < count($time); $i++)
+                        @if ( $time[$i]->booking_id ==$waitTable->booking_id2)
+                        <tr><td>{{$waitTable->booking_id2}}</td><td>{{$time[$i]->datetime}}</td>
+                        <td><a href="{{ action('AdminController@ok',[$waitTable->booking_id2 , $waitTable->project_id])}}" class="btn btn-primary">confirm</a></td>
+                        @endif
+                        @endfor
+
+                        @for ($i = 0; $i < count($time); $i++)
+                        @if ( $time[$i]->booking_id ==$waitTable->booking_id3)
+                        <tr><td>{{$waitTable->booking_id3}}</td><td>{{$time[$i]->datetime}}</td>
+                        <td><a href="{{ action('AdminController@ok',[$waitTable->booking_id3 , $waitTable->project_id])}}" class="btn btn-primary">confirm</a></td>
+                        @endif
+                        @endfor
+
+
+
+                         
                     
                     </table>   
                 </div>

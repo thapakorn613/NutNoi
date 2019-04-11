@@ -25,6 +25,7 @@ Route::get('/manager', 'AdminController@admin')
     ->name('admin');
 
 Route::any('/manager/{id?}','AdminController@toCheck');
+Route::any('ok/{id}/{asd}','AdminController@ok');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

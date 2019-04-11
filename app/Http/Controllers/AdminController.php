@@ -24,6 +24,21 @@ class AdminController extends Controller
     {
         $waitTable= DB::table('waitconfirm')
         ->where('project_id',$id)->first();
-       return view('checkTime' , ['waitTable' => $waitTable]);
+
+        $time= DB::table('timebooking')->get();
+        
+
+       return view('checkTime' , ['waitTable' => $waitTable] , ['time' => $time] );
     }   
+
+    public function ok($id,$p_id)
+    {
+        
+      
+        DB::table('users')
+            ->where('project_id', $p_id)
+            ->update(['booking_id' => $id]);
+          return view('warning'); 
+    }   
+   
 }
