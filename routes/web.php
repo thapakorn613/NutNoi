@@ -25,7 +25,7 @@ Route::get('/manager', 'AdminController@admin')
     ->name('admin');
 
 Route::any('/manager/{id?}','AdminController@toCheck');
-Route::any('ok/{id}/{asd}','AdminController@ok');
+Route::any('/manager/confirm/{id}/{asd}','AdminController@confirm');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -41,6 +41,5 @@ Route::get('/home/table', function () {
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

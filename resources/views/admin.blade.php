@@ -26,7 +26,7 @@
                                 <td><a href="{{ action('AdminController@toCheck',$waitTable[$i]->project_id)}}" class="btn btn-primary" >Check</a></td>
                             @elseif ($waitTable[$i]->status_confirm == "1")
                                 <td> Confirm </td>
-                                <td><a href="/home" class="btn btn-primary" >Edit</a></td>
+                                <td><a href="/home" class="btn btn-primary" >Edit</a></td> 
                             @endif
                             
                             </tr>

@@ -12,7 +12,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                        
+                    
                     @endif
                     Your time has been selected, Please check on your profile.  
                 </div>

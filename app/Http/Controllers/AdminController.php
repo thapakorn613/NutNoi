@@ -17,28 +17,26 @@ class AdminController extends Controller
     public function admin()
     {
         $waitTable = DB::table('waitconfirm')->get();
-
         return view('admin', ['waitTable' => $waitTable]);
+
     }
     public function toCheck($id)
     {
         $waitTable= DB::table('waitconfirm')
-        ->where('project_id',$id)->first();
-
+            ->where('project_id',$id)->first();
         $time= DB::table('timebooking')->get();
-        
-
-       return view('checkTime' , ['waitTable' => $waitTable] , ['time' => $time] );
+        return view('checkTime' , ['waitTable' => $waitTable] , ['time' => $time] );
     }   
 
-    public function ok($id,$p_id)
+    public function confirm($id,$p_id)
     {
-        
-      
         DB::table('users')
             ->where('project_id', $p_id)
             ->update(['booking_id' => $id]);
-          return view('warning'); 
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_confirm' => 1]);
+        return view('warning'); 
     }   
    
 }
