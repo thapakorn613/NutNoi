@@ -20,6 +20,7 @@ class AdminController extends Controller
         return view('admin', ['waitTable' => $waitTable]);
 
     }
+
     public function toCheck($id)
     {
         $waitTable= DB::table('waitconfirm')

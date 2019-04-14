@@ -52,22 +52,19 @@
                             
 
                         @else
+                            @if (Auth::user()->type != "admin")
                             <li class="nav-item">
                                 <a class="nav-link" href='/home/table' >{{ __('ShowTable') }}</a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href='/profile/' >{{ __('Profile') }}</a>
                             </li>
-
-
                             @if (Auth::user()->isAdmin())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                             </li>
                             @endif
-
-
-
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
