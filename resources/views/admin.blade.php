@@ -23,10 +23,10 @@
                             <td>{{$waitTable[$i]->project_id}}</td>
                             @if ($waitTable[$i]->status_confirm == null)
                                 <td> Not Confirm </td>
-                                <td><a href="{{ action('AdminController@toCheck',$waitTable[$i]->project_id)}}" class="btn btn-primary" >Check</a></td>
+                                <td><a href="{{ action('AdminController@toCheck',$waitTable[$i]->project_id)}}" class="btn btn-danger" >Check</a></td>
                             @elseif ($waitTable[$i]->status_confirm == "1")
                                 <td> Confirm </td>
-                                <td><a href="/home" class="btn btn-primary" >Edit</a></td> 
+                                <td><a href="{{ action('AdminController@forEdit',$waitTable[$i]->project_id)}}" class="btn btn-dark" >Edit</a></td> 
                             @endif
                             
                             </tr>
