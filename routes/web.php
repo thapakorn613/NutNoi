@@ -49,7 +49,6 @@ Route::get('/home/table', function () {
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');
-
 Route::any('setBooking2/{id?}/{asd?}', 'UserController@setBooking2');
 
 Route::get('/home', 'HomeController@index')->name('home');
