@@ -21,22 +21,65 @@
                     <tr><th>Email</th>
                     <td>{{$user->email}}</td>  
                     <tr><th>Booking</th>
-                    <td>{{$user->booking_id}}</td>               
-                    
+                    @if ( $user->booking_id != NULL )
+                        <td>{{$user->booking_id}}</td> 
+                    @else
+                        <td>ยังไม่ได้ถูก Confirm</td>
+                    @endif
                     </tr>
                     </table>   
                     <table boarder="1">
                     <table class="table table-bordered table-striped">
-                    <th>Booking ID</th>
-                    <th>Date : Time</th>
-                    <th>Project ID</th>
-                    @foreach( $booking as $time => $data)
+                        @foreach( $booking as $time => $data)
+                            <th>Booking ID</th>
+                            <th>Date : Time</th>
+                            <th>Project ID</th>
+                            <tr>
+                            <td>{{$data->booking_id}}</td>  
+                            <td>{{$data->datetime}}</td>  
+                            <td>{{$data->project_id}}</td>   
+                        </tr>
+                        @endforeach
+                        @if ( $user->booking_id == NULL)
+                            <tr><td>สถานะตอนนี้</td></tr>
+                            <tr><td>ยังไม่ได้ถูก Confirm </td> </tr>
+                        @endif
+                    </table>
+                    <table class="table table-bordered table-striped">
+                        <td>Order</td>
+                        <th>Booking ID</th>
+                        <td>Time</td>
+                        <td>Issue</td>
                         <tr>
-                        <td>{{$data->booking_id}}</td>  
-                        <td>{{$data->datetime}}</td>  
-                        <td>{{$data->project_id}}</td>   
-                    </tr>
-                    @endforeach
+                        @for ($i = 0; $i < count($timebookingTable ); $i++)
+                            @if ( $timebookingTable[$i]->project_id == $user->project_id)
+                                @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
+                                    <tr>
+                                    <td>Booking ID 1</td>
+                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                    <td>{{$timebookingTable[$i]->datetime}}</td>
+                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                    </tr>
+                                @endif
+                                @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
+                                    <tr>
+                                    <td>Booking ID 2</td>
+                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                    <td>{{$timebookingTable[$i]->datetime}}</td>
+                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                    </tr>
+                                @endif
+                                @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
+                                    <tr>
+                                    <td>Booking ID 3</td>
+                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                    <td>{{$timebookingTable[$i]->datetime}}</td>
+                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                    </tr>
+                                @endif
+                            @endif
+                            </tr>
+                        @endfor
                     </table>   
                 </div>
             </div>

@@ -43,9 +43,11 @@ Route::get('/home/table', function () {
     $timebookingTable = DB::table('timebooking')->get();
     $id = Auth::user()->project_id;
     $users = Auth::user();
+    $waitTable = DB::table('waitconfirm')
+        ->where('project_id',$id)->first();
     $project = DB::table('project')
         ->where('id',$id)->first();
-    return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users]);
+    return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');

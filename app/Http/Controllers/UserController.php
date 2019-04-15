@@ -126,8 +126,10 @@ class UserController extends Controller
         $_booking_id = Auth::user()->booking_id;
         $booking = DB::table('timebooking')
             ->where('booking_id',$_booking_id)->get();
-       
-        return view('profile',compact('user','booking') );
+        $timebookingTable = DB::table('timebooking')->get();
+        $waitTable = DB::table('waitconfirm')
+                ->where('project_id',$user->project_id)->first();
+        return view('profile',['timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
     }
 
 
@@ -228,10 +230,10 @@ class UserController extends Controller
     {
         $_id = Auth::user()->id;
         $user = DB::table('users')
-        ->where('id',$_id)->first();
+            ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-        ->where('project_id',$user->project_id)->first();
+            ->where('project_id',$user->project_id)->first();
         
         if($project==null)
         {
@@ -251,14 +253,8 @@ class UserController extends Controller
     
             $time = DB::table('timebooking')
                 ->where('project_id',$user->project_id)->get();
-    
-    
-    
            return view('mywaittime' , ['booking' => $booking],['time' => $time]);
         }
-
-        
-
     }
 
     public function admincheck($id)
