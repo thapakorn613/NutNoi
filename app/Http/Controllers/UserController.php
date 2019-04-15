@@ -125,9 +125,8 @@ class UserController extends Controller
         $user = Auth::user();
         $_booking_id = Auth::user()->booking_id;
         $booking = DB::table('timebooking')
-        ->where('booking_id',$_booking_id)->get();
+            ->where('booking_id',$_booking_id)->get();
        
-        
         return view('profile',compact('user','booking') );
     }
 
@@ -166,10 +165,10 @@ class UserController extends Controller
             ->update(['booking_id3' => $id]);
         }
         else{
-            return view('warning/warningBasic');
+            return view('warning/afterAddBooking');
         }
         
-       return view('warning/warningBasic');
+       return view('warning/afterAddBooking');
     }
 
 

@@ -32,7 +32,6 @@
                     <th>Project ID</th>
                     @foreach( $booking as $time => $data)
                         <tr>
-                        
                         <td>{{$data->booking_id}}</td>  
                         <td>{{$data->datetime}}</td>  
                         <td>{{$data->project_id}}</td>   

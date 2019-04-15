@@ -38,8 +38,10 @@ Route::any('/admincheck/{id?}',  'UserController@admincheck');
 Route::get('/home/table', function () {
     $timebookingTable = DB::table('timebooking')->get();
     $id = Auth::user()->project_id;
-    
-    return view('showTable', ['timebookingTable' => $timebookingTable],['id' => $id]);
+    $users = Auth::user();
+    $project = DB::table('project')
+        ->where('id',$id)->first();
+    return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users]);
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');
