@@ -166,10 +166,10 @@ class UserController extends Controller
             ->update(['booking_id3' => $id]);
         }
         else{
-            return view('warning');
+            return view('warning/warningBasic');
         }
         
-       return view('warning');
+       return view('warning/warningBasic');
     }
 
 

@@ -13,11 +13,15 @@
                             <td>Project ID</td>
                             <td>Booking ID</td>
                             <td>Time</td>
+                            <td>Edit</td>
                             </tr>
                             <tr>
                             <td>{{$users->project_id}}</td>
                             <td>{{$users->booking_id}}</td>
                             <td>{{$datatimeUser->datetime}}</td>
+                            <td>
+                            <a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a>
+                            </td>
                             </tr>
                         </table>
                     </div>

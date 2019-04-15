@@ -49,7 +49,18 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => 1]);
-        return view('warning'); 
+        return view('warning/afterConfirm'); 
     }   
+
+    public function cancel($p_id)
+    {
+        DB::table('users')
+            ->where('project_id', $p_id)
+            ->update(['booking_id' => null]);
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_confirm' => null]);
+        return view('warning/afterCancel'); 
+    } 
    
 }
