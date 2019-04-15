@@ -125,9 +125,8 @@ class UserController extends Controller
         $user = Auth::user();
         $_booking_id = Auth::user()->booking_id;
         $booking = DB::table('timebooking')
-        ->where('booking_id',$_booking_id)->get();
+            ->where('booking_id',$_booking_id)->get();
        
-        
         return view('profile',compact('user','booking') );
     }
 
@@ -166,17 +165,99 @@ class UserController extends Controller
             ->update(['booking_id3' => $id]);
         }
         else{
-            return view('warning');
+            return view('warning/afterAddBooking');
         }
         
-       return view('warning');
+       return view('warning/afterAddBooking');
     }
+
+
+
+    public function setbooking2($booking_id,$id)
+    {
+
+        $_id = Auth::user()->id;
+        $user = DB::table('users')
+        ->where('id',$_id)->first();
+
+        $project = DB::table('waitconfirm')
+        ->where('project_id',$user->project_id)->first();
+
+        if($id == 0)
+        {
+            DB::table('waitconfirm')
+            ->where('project_id', $user->project_id)
+            ->update(['booking_id1' => $booking_id]);
+        }
+        if($id == 1)
+        {
+            DB::table('waitconfirm')
+            ->where('project_id', $user->project_id)
+            ->update(['booking_id2' => $booking_id]);
+        }
+        if($id == 2)
+        {
+            DB::table('waitconfirm')
+            ->where('project_id', $user->project_id)
+            ->update(['booking_id3' => $booking_id]);
+        }
+        
+        return view('warning/afterConfirm'); 
+    }   
 
 
     public function manager()
     {
       $users = User::all()->toArray();
        return view('admin.manager' , compact('users'));
+
+    }
+
+    public function edittime2($id2)
+    {
+        $timebookingTable = DB::table('timebooking')->get();
+        $id = Auth::user()->project_id;
+        $users = Auth::user();
+        $project = DB::table('project')
+            ->where('id',$id)->first();
+        return view('showTable2', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users,'id2'=>$id2]);
+
+    }
+
+    public function mywaittime()
+    {
+        $_id = Auth::user()->id;
+        $user = DB::table('users')
+        ->where('id',$_id)->first();
+
+        $project = DB::table('waitconfirm')
+        ->where('project_id',$user->project_id)->first();
+        
+        if($project==null)
+        {
+            $timebookingTable = DB::table('timebooking')->get();
+            $id = Auth::user()->project_id;
+            $users = Auth::user();
+            $project = DB::table('project')
+                ->where('id',$id)->first();
+            return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users]);
+        }
+        else{
+            $project = DB::table('waitconfirm')
+            ->where('project_id',$user->project_id)->first();
+    
+            $booking = DB::table('waitconfirm')
+                ->where('project_id',$user->project_id)->first();
+    
+            $time = DB::table('timebooking')
+                ->where('project_id',$user->project_id)->get();
+    
+    
+    
+           return view('mywaittime' , ['booking' => $booking],['time' => $time]);
+        }
+
+        
 
     }
 

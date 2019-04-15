@@ -39,7 +39,7 @@
                             @if ( $timebookingTable[$i]->project_id == $id)
                                 <td>{{$timebookingTable[$i]->datetime}}</td>
                                 <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
+                                <td><a href="{{ action('UserController@setBooking2',[$timebookingTable[$i]->booking_id , $id2])}}" class="btn btn-danger">Add</a></td>
                            @endif
                         </tr>
                         @endfor

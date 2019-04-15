@@ -17,28 +17,50 @@ class AdminController extends Controller
     public function admin()
     {
         $waitTable = DB::table('waitconfirm')->get();
-
         return view('admin', ['waitTable' => $waitTable]);
+
     }
+
     public function toCheck($id)
     {
         $waitTable= DB::table('waitconfirm')
-        ->where('project_id',$id)->first();
-
+            ->where('project_id',$id)->first();
         $time= DB::table('timebooking')->get();
-        
-
-       return view('checkTime' , ['waitTable' => $waitTable] , ['time' => $time] );
+        return view('checkTime' , ['waitTable' => $waitTable , 'time' => $time] );
     }   
 
-    public function ok($id,$p_id)
+    public function forEdit($id)
     {
-        
-      
+        $users = DB::table('users')
+            ->where('project_id',$id)->first();
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$id)->first();
+        $time= DB::table('timebooking')->get();
+        $datatimeUser = DB::table('timebooking')
+            ->where('booking_id',$users->booking_id)->first();
+        return view('checkTime' , ['users' => $users , 'waitTable' => $waitTable , 'time' => $time,'datatimeUser'=>$datatimeUser] );
+    }  
+
+    public function confirm($id,$p_id)
+    {
         DB::table('users')
             ->where('project_id', $p_id)
             ->update(['booking_id' => $id]);
-          return view('warning'); 
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_confirm' => 1]);
+        return view('warning/afterConfirm'); 
     }   
+
+    public function cancel($p_id)
+    {
+        DB::table('users')
+            ->where('project_id', $p_id)
+            ->update(['booking_id' => null]);
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_confirm' => null]);
+        return view('warning/afterCancel'); 
+    } 
    
 }
