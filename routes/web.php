@@ -33,6 +33,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/profile/{id?}',  'UserController@profile');
 
+Route::any('/edittime2/{id?}',  'UserController@edittime2');
+
+Route::any('/mywaittime',  'UserController@mywaittime');
+
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
 
 Route::get('/home/table', function () {
@@ -45,5 +49,6 @@ Route::get('/home/table', function () {
 });
 
 Route::any('setBooking/{id}', 'UserController@setBooking');
+Route::any('setBooking2/{id?}/{asd?}', 'UserController@setBooking2');
 
 Route::get('/home', 'HomeController@index')->name('home');
