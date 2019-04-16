@@ -45,7 +45,7 @@
                             <tr><td>ยังไม่ได้ถูก Confirm </td> </tr>
                         @endif
                     </table>
-                    @if ($user->haveWaitID != null )
+                    @if ($user->haveWaitTable != null && $user->booking != NULL)
                         <table class="table table-bordered table-striped">
                             <td>Order</td>
                             <th>Booking ID</th>

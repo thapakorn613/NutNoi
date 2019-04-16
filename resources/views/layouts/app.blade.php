@@ -53,7 +53,7 @@
 
                         @else
 
-                            @if (Auth::user()->type != "admin" || Auth::user()->project_id != NULL && Auth::user()->haveWaitID != NULL )
+                            @if (Auth::user()->type != "admin" && Auth::user()->project_id != NULL && Auth::user()->haveWaitTable != NULL )
                             <li class="nav-item">
                                 <a class="nav-link" href='/home/table' >{{ __('ShowTable') }}</a>
                             </li>

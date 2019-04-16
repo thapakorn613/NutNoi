@@ -71,6 +71,32 @@ class UserController extends Controller
         //
     }
 
+    public function showTable()
+    {
+        
+        $timebookingTable = DB::table('timebooking')->get();
+        $users = Auth::user();
+        $waitTable = DB::table('waitconfirm')
+            ->where('project_id',$users->project_id)->first();
+        $project = DB::table('project')
+            ->where('id',$users->project_id)->first();
+        $timeUser = DB::table('timebooking')
+            ->where('project_id',$users->project_id)->first();
+        DB::table('users')
+            ->where('project_id', $users->project_id)
+            ->update(['haveWaitTable' => 1]);
+
+        $projectWait = DB::table('waitconfirm')
+            ->where('project_id',$users->project_id)->first();
+
+        if($projectWait==null)
+        {
+            DB::table('waitconfirm')->insert(
+                ['project_id' => $users->project_id]
+            );
+        }
+        return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -142,9 +168,6 @@ class UserController extends Controller
         $project = DB::table('waitconfirm')
             ->where('project_id',$user->project_id)->first();
         
-        DB::table('users')
-            ->where('project_id', $user->project_id)
-            ->update(['haveWaitID' => 1]);
         if($project==null)
         {
             DB::table('waitconfirm')->insert(

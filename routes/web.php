@@ -39,14 +39,5 @@ Route::any('/home/table/delete/booking_id1/{id?}', 'UserController@deleteBooking
 Route::any('/home/table/delete/booking_id2/{id?}', 'UserController@deleteBookingID2');
 Route::any('/home/table/delete/booking_id3/{id?}', 'UserController@deleteBookingID3');
 
-Route::get('/home/table', function () {
-    $timebookingTable = DB::table('timebooking')->get();
-    $id = Auth::user()->project_id;
-    $users = Auth::user();
-    $waitTable = DB::table('waitconfirm')
-        ->where('project_id',$id)->first();
-    $project = DB::table('project')
-        ->where('id',$id)->first();
-    return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
-});
+Route::get('/home/table', 'UserController@showTable' );
 

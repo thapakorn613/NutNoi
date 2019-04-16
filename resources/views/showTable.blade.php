@@ -7,22 +7,16 @@
             <div class="card">
                 <div class="card-header">ข้อมูลโปรเจคคร่าวๆของ {{$users->name}}</div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped ">
                         <tr> 
-                        <th>Name Project</th>
-                        <th>Booking ID</th>
                         <th>Project ID</th>
+                        <th>Name Project</th>
                         <tr>
-                        <td>{{$project->project_name}}</td>
-                        @if ( $users->booking_id != NULL )
-                            <td>{{$users->booking_id}}</td> 
-                        @else
-                            <td>ยังไม่ได้ถูก Confirm</td>
-                        @endif
                         <td>{{$users->project_id}}</td>
+                        <td>{{$project->project_name}}</td>
                         </tr>
                     </table>  
-                    @if ( $users->haveWaitID != NULL)
+                    @if ( $users->booking == NULL && $waitTable->status_confirm == NULL)
                         @if ($waitTable->status_submit == NULL )
                             <a class="btn btn-danger"  href="#" >+++++++++++++++++++++++++++++ ตอนนี้คุณยังไม่ได้ Submit +++++++++++++++++++++++++++++</a>
                         @else
@@ -35,7 +29,7 @@
                             <td>Move</td>
                             <tr>
                             @for ($i = 0; $i < count($timebookingTable ); $i++)
-                                @if ( $timebookingTable[$i]->project_id == $id)
+                                @if ( $timebookingTable[$i]->project_id == $users->project_id)
                                     @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
                                         <tr>
                                         <td>Booking ID 1</td>
@@ -74,6 +68,22 @@
                             <td>You can comfirm to submit</td>
                             <td><a class="btn btn-success" href="{{ action('UserController@submitted',$users->project_id)}}" >SUBMIT</a></td>   
                         </table>
+                    @else
+                        <table class="table table-bordered table-hover">
+                        <tr>
+                        <td><a class="btn btn-success" href="#" >+++++++++++++++ ตอนนี้ Admin ได้ยืนยันการจองเวลาของคุณเเล้ว คุณได้เวลาตั้งนี้ ++++++++++++++</a></td>
+                        </tr>
+                        </table>
+                        <table class="table table-bordered table-striped">
+                        <tr>
+                        <td>Booking ID</td><td>DateTime</td>
+                        </tr>
+                        <tr>
+                        <td>{{$users->booking_id}}</td>
+                        <td>{{$timeUser->datetime}}</td>
+                        </tr>
+                        </table>
+                        
                     @endif
                 </div>
             </div>
@@ -92,9 +102,9 @@
                         <th>Date Time</th>
                         <th>Add</th>
                         <tr>
-                        @if ($users->haveWaitID == NULL)
+                        @if ($users->haveWaitTable == NULL)
                             @for ($i = 0; $i < count($timebookingTable ); $i++)
-                                @if ( $timebookingTable[$i]->project_id == $id  )
+                                @if ( $timebookingTable[$i]->project_id == $users->project_id  )
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
                                         <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
@@ -103,7 +113,7 @@
                             @endfor
                         @else
                             @for ($i = 0; $i < count($timebookingTable ); $i++)
-                                @if ( $timebookingTable[$i]->project_id == $id && $timebookingTable[$i]->booking_id != $waitTable->booking_id1 && $timebookingTable[$i]->booking_id!= $waitTable->booking_id2&& $timebookingTable[$i]->booking_id!= $waitTable->booking_id3)
+                                @if ( $timebookingTable[$i]->project_id == $users->project_id && $timebookingTable[$i]->booking_id != $waitTable->booking_id1 && $timebookingTable[$i]->booking_id!= $waitTable->booking_id2&& $timebookingTable[$i]->booking_id!= $waitTable->booking_id3)
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
                                         <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
@@ -111,9 +121,7 @@
                                 </tr>
                             @endfor
                         @endif
-                    </table>  
-                     
-                    
+                    </table>
                 </div>
             </div>
         </div>
