@@ -137,11 +137,14 @@ class UserController extends Controller
     {
         $_id = Auth::user()->id;
         $user = DB::table('users')
-        ->where('id',$_id)->first();
+            ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-        ->where('project_id',$user->project_id)->first();
-
+            ->where('project_id',$user->project_id)->first();
+        
+        DB::table('users')
+            ->where('project_id', $user->project_id)
+            ->update(['haveWaitID' => 1]);
         if($project==null)
         {
             DB::table('waitconfirm')->insert(
@@ -173,7 +176,7 @@ class UserController extends Controller
        return view('warning/afterAddBooking');
     }
 
-
+    
 
     public function setbooking2($booking_id,$id)
     {
@@ -210,8 +213,8 @@ class UserController extends Controller
 
     public function manager()
     {
-      $users = User::all()->toArray();
-       return view('admin.manager' , compact('users'));
+        $users = User::all()->toArray();
+        return view('admin.manager' , compact('users'));
 
     }
 
@@ -265,15 +268,43 @@ class UserController extends Controller
 
     }
 
-    public function doctor()
-    {
-        return view('admin.manager');
-    }
-
     public function update($id)
     {
         $user = User::find($id);
-       return view('update' , compact('user','id'));
-      }
+        return view('update' , compact('user','id'));
+    }
+
+    public function submitted($p_id)
+    {
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_submit' => 1]);
+       return view('warning/afterSubmitted');
+    }
+    public function deleteBookingID1()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id1' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+    public function deleteBookingID2()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id2' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+    public function deleteBookingID3()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id3' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+
 }
 

@@ -52,7 +52,8 @@
                             
 
                         @else
-                            @if (Auth::user()->type != "admin")
+
+                            @if (Auth::user()->type != "admin" || Auth::user()->project_id != NULL && Auth::user()->haveWaitID != NULL )
                             <li class="nav-item">
                                 <a class="nav-link" href='/home/table' >{{ __('ShowTable') }}</a>
                             </li>
@@ -60,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href='/profile/' >{{ __('Profile') }}</a>
                             </li>
-                            @if (Auth::user()->isAdmin())
+                            @if (Auth::user()->type == "admin")
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                             </li>

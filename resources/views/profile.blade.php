@@ -45,42 +45,44 @@
                             <tr><td>ยังไม่ได้ถูก Confirm </td> </tr>
                         @endif
                     </table>
-                    <table class="table table-bordered table-striped">
-                        <td>Order</td>
-                        <th>Booking ID</th>
-                        <td>Time</td>
-                        <td>Issue</td>
-                        <tr>
-                        @for ($i = 0; $i < count($timebookingTable ); $i++)
-                            @if ( $timebookingTable[$i]->project_id == $user->project_id)
-                                @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 1</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
-                                    </tr>
+                    @if ($user->haveWaitID != null )
+                        <table class="table table-bordered table-striped">
+                            <td>Order</td>
+                            <th>Booking ID</th>
+                            <td>Time</td>
+                            <td>Issue</td>
+                            <tr>
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $user->project_id)
+                                    @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 1</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                        </tr>
+                                    @endif
+                                    @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 2</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                        </tr>
+                                    @endif
+                                    @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 3</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="/home/table" >back to select time</a>
+                                        </tr>
+                                    @endif
                                 @endif
-                                @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 2</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
-                                    </tr>
-                                @endif
-                                @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 3</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="/home/table" >back to select time</a>
-                                    </tr>
-                                @endif
-                            @endif
-                            </tr>
-                        @endfor
-                    </table>   
+                                </tr>
+                            @endfor
+                        </table>
+                    @endif    
                 </div>
             </div>
         </div>

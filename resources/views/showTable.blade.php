@@ -22,48 +22,59 @@
                         <td>{{$users->project_id}}</td>
                         </tr>
                     </table>  
-                    <table class="table table-bordered table-striped">
-                        <td>Order</td>
-                        <th>Booking ID</th>
-                        <td>Time</td>
-                        <td>Move</td>
-                        <tr>
-                        @for ($i = 0; $i < count($timebookingTable ); $i++)
-                            @if ( $timebookingTable[$i]->project_id == $id)
-                                @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 1</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="#" >up</a>
-                                    <a class="btn btn-orange" href="#" >down</a>
-                                    <a class="btn btn-red" href="#" >delete</a></td>
-                                    </tr>
+                    @if ( $users->haveWaitID != NULL)
+                        @if ($waitTable->status_submit == NULL )
+                            <a class="btn btn-danger"  href="#" >+++++++++++++++++++++++++++++ ตอนนี้คุณยังไม่ได้ Submit +++++++++++++++++++++++++++++</a>
+                        @else
+                            <a class="btn btn-success" href="#" >+++++++++++++ ตอนนี้คุณได้ทำการ Submit เรียบร้อยเเล้ว กรุณารอการยืนยันจาก Admin +++++++++++++</a>
+                        @endif
+                        <table class="table table-bordered table-striped">
+                            <td>Order</td>
+                            <th>Booking ID</th>
+                            <td>Time</td>
+                            <td>Move</td>
+                            <tr>
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $id)
+                                    @if ($waitTable->booking_id1 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 1</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="#" >up</a>
+                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>
+                                        </tr>
+                                    @endif
+                                    @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 2</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="#" >up</a>
+                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID2')}}" >delete</a></td>
+                                        </tr>
+                                    @endif
+                                    @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
+                                        <tr>
+                                        <td>Booking ID 3</td>
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a class="btn btn-success" href="#" >up</a>
+                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID3')}}" >delete</a></td>
+                                        </tr>
+                                    @endif
                                 @endif
-                                @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 2</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="#" >up</a>
-                                    <a class="btn btn-orange" href="#" >down</a>
-                                    <a class="btn btn-red" href="#" >delete</a></td>
-                                    </tr>
-                                @endif
-                                @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
-                                    <tr>
-                                    <td>Booking ID 3</td>
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a class="btn btn-success" href="#" >up</a>
-                                    <a class="btn btn-orange" href="#" >down</a>
-                                    <a class="btn btn-red" href="#" >delete</a></td>
-                                    </tr>
-                                @endif
-                            @endif
-                            </tr>
-                        @endfor
-                    </table> 
+                                </tr>
+                            @endfor
+                        </table>
+                        <table class="table table-bordered table-hover">
+                            <td>You can comfirm to submit</td>
+                            <td><a class="btn btn-success" href="{{ action('UserController@submitted',$users->project_id)}}" >SUBMIT</a></td>   
+                        </table>
+                    @endif
                 </div>
             </div>
             <div class="card">
@@ -81,15 +92,28 @@
                         <th>Date Time</th>
                         <th>Add</th>
                         <tr>
-                        @for ($i = 0; $i < count($timebookingTable ); $i++)
-                            @if ( $timebookingTable[$i]->project_id == $id && $timebookingTable[$i]->booking_id != $waitTable->booking_id1 && $timebookingTable[$i]->booking_id!= $waitTable->booking_id2&& $timebookingTable[$i]->booking_id!= $waitTable->booking_id3 )
-                                    <td>{{$timebookingTable[$i]->booking_id}}</td>
-                                    <td>{{$timebookingTable[$i]->datetime}}</td>
-                                    <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
-                            @endif
-                        </tr>
-                        @endfor
-                    </table>   
+                        @if ($users->haveWaitID == NULL)
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $id  )
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
+                                @endif
+                                </tr>
+                            @endfor
+                        @else
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $id && $timebookingTable[$i]->booking_id != $waitTable->booking_id1 && $timebookingTable[$i]->booking_id!= $waitTable->booking_id2&& $timebookingTable[$i]->booking_id!= $waitTable->booking_id3)
+                                        <td>{{$timebookingTable[$i]->booking_id}}</td>
+                                        <td>{{$timebookingTable[$i]->datetime}}</td>
+                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
+                                @endif
+                                </tr>
+                            @endfor
+                        @endif
+                    </table>  
+                     
+                    
                 </div>
             </div>
         </div>

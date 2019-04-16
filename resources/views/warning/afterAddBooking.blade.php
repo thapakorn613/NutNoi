@@ -14,7 +14,11 @@
                         </div>
                     
                     @endif
-                    Your time has been selected, Please check on your profile.
+                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
+                    <br>
+                    <td>
+                        <a class="btn btn-success" href="/home/table" >back to Select Time</a>
+                    </td>
                     <br>
                 </div>
             </div>

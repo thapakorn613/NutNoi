@@ -17,8 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')    
-    ->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/manager', 'AdminController@admin')    
     ->middleware('is_admin')    
@@ -29,15 +28,16 @@ Route::any('/manager/forEdit/{id?}','AdminController@forEdit');
 Route::any('/manager/confirm/{id?}/{asd?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::any('/profile/{id?}',  'UserController@profile');
-
 Route::any('/edittime2/{id?}',  'UserController@edittime2');
-
 Route::any('/mywaittime',  'UserController@mywaittime');
-
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
+Route::any('/home/table/submitted/{id?}',  'UserController@submitted');
+Route::any('setBooking/{id}', 'UserController@setBooking');
+Route::any('setBooking2/{id?}/{asd?}', 'UserController@setBooking2');
+Route::any('/home/table/delete/booking_id1/{id?}', 'UserController@deleteBookingID1');
+Route::any('/home/table/delete/booking_id2/{id?}', 'UserController@deleteBookingID2');
+Route::any('/home/table/delete/booking_id3/{id?}', 'UserController@deleteBookingID3');
 
 Route::get('/home/table', function () {
     $timebookingTable = DB::table('timebooking')->get();
@@ -50,7 +50,3 @@ Route::get('/home/table', function () {
     return view('showTable', ['timebookingTable' => $timebookingTable,'id' => $id,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
 });
 
-Route::any('setBooking/{id}', 'UserController@setBooking');
-Route::any('setBooking2/{id?}/{asd?}', 'UserController@setBooking2');
-
-Route::get('/home', 'HomeController@index')->name('home');
