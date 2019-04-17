@@ -71,6 +71,10 @@
                                 <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                             </li>
                             @endif
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('show') }}</a>
+                            </li>
                             @if (Auth::user()->type != "admin")
                                 @if (Auth::user()->haveWaitTable != NULL && Auth::user()->project_id != NULL)
                                     <li class="nav-item">
