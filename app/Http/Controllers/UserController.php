@@ -162,18 +162,10 @@ class UserController extends Controller
 
     public function showproject()
     {
-       
-
-            $project = DB::table('project')->get();
-           
-
-            $user = DB::table('users')->get();
-
-            $teacher = DB::table('teacher')->get();
-           
-
-       
-            return view('showallproject', ['project' => $project,'teacher'=>$teacher,'user'=>$user]);
+        $project = DB::table('project')->get();
+        $user = DB::table('users')->get();
+        $teacher = DB::table('teacher')->get();
+        return view('showallproject', ['project' => $project,'teacher'=>$teacher,'user'=>$user]);
     }
 
 
@@ -188,7 +180,6 @@ class UserController extends Controller
             return view('warning/afterAddBooking',['project'=>$project,'users'=>$users] );
         }
         $teacher = DB::table('teacher')->get();
-       
         return view('addproject',['teacher' => $teacher] );
     }
 

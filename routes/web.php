@@ -28,6 +28,7 @@ Route::any('/manager/forEdit/{id?}','AdminController@forEdit');
 Route::any('/manager/confirm/{id?}/{asd?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 
+Route::any('/showproject',  'UserController@showproject');
 Route::any('/profile/{id?}',  'UserController@profile');
 Route::any('/edittime2/{id?}',  'UserController@edittime2');
 Route::any('/mywaittime',  'UserController@mywaittime');
