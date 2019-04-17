@@ -71,6 +71,32 @@ class UserController extends Controller
         //
     }
 
+    public function showTable()
+    {
+        
+        $timebookingTable = DB::table('timebooking')->get();
+        $users = Auth::user();
+        $waitTable = DB::table('waitconfirm')
+            ->where('project_id',$users->project_id)->first();
+        $project = DB::table('project')
+            ->where('id',$users->project_id)->first();
+        $timeUser = DB::table('timebooking')
+            ->where('project_id',$users->project_id)->first();
+        DB::table('users')
+            ->where('project_id', $users->project_id)
+            ->update(['haveWaitTable' => 1]);
+
+        $projectWait = DB::table('waitconfirm')
+            ->where('project_id',$users->project_id)->first();
+
+        if($projectWait==null)
+        {
+            DB::table('waitconfirm')->insert(
+                ['project_id' => $users->project_id]
+            );
+        }
+        return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -126,8 +152,10 @@ class UserController extends Controller
         $_booking_id = Auth::user()->booking_id;
         $booking = DB::table('timebooking')
             ->where('booking_id',$_booking_id)->get();
-       
-        return view('profile',compact('user','booking') );
+        $timebookingTable = DB::table('timebooking')->get();
+        $waitTable = DB::table('waitconfirm')
+                ->where('project_id',$user->project_id)->first();
+        return view('profile',['timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
     }
 
 
@@ -207,11 +235,11 @@ class UserController extends Controller
     {
         $_id = Auth::user()->id;
         $user = DB::table('users')
-        ->where('id',$_id)->first();
+            ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-        ->where('project_id',$user->project_id)->first();
-
+            ->where('project_id',$user->project_id)->first();
+        
         if($project==null)
         {
             DB::table('waitconfirm')->insert(
@@ -243,7 +271,7 @@ class UserController extends Controller
        return view('warning/afterAddBooking');
     }
 
-
+    
 
     public function setbooking2($booking_id,$id)
     {
@@ -280,8 +308,8 @@ class UserController extends Controller
 
     public function manager()
     {
-      $users = User::all()->toArray();
-       return view('admin.manager' , compact('users'));
+        $users = User::all()->toArray();
+        return view('admin.manager' , compact('users'));
 
     }
 
@@ -300,10 +328,10 @@ class UserController extends Controller
     {
         $_id = Auth::user()->id;
         $user = DB::table('users')
-        ->where('id',$_id)->first();
+            ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-        ->where('project_id',$user->project_id)->first();
+            ->where('project_id',$user->project_id)->first();
         
         if($project==null)
         {
@@ -323,14 +351,8 @@ class UserController extends Controller
     
             $time = DB::table('timebooking')
                 ->where('project_id',$user->project_id)->get();
-    
-    
-    
            return view('mywaittime' , ['booking' => $booking],['time' => $time]);
         }
-
-        
-
     }
 
     public function admincheck($id)
@@ -341,15 +363,43 @@ class UserController extends Controller
 
     }
 
-    public function doctor()
-    {
-        return view('admin.manager');
-    }
-
     public function update($id)
     {
         $user = User::find($id);
-       return view('update' , compact('user','id'));
-      }
+        return view('update' , compact('user','id'));
+    }
+
+    public function submitted($p_id)
+    {
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['status_submit' => 1]);
+       return view('warning/afterSubmitted');
+    }
+    public function deleteBookingID1()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id1' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+    public function deleteBookingID2()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id2' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+    public function deleteBookingID3()
+    {
+        $p_id = Auth::user()->project_id;
+        DB::table('waitconfirm')
+            ->where('project_id', $p_id)
+            ->update(['booking_id3' => null]);
+        return view('warning/afterDeleteBookingID'); 
+    } 
+
 }
 
