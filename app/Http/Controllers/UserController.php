@@ -220,10 +220,6 @@ class UserController extends Controller
             $_booking_id = Auth::user()->booking_id;
             $booking = DB::table('timebooking')
                 ->where('booking_id',$_booking_id)->get();
-
-
-                
-           
             return view('profile',compact('user','booking') );
         
     }
@@ -233,34 +229,34 @@ class UserController extends Controller
     public function setBooking($id)
     {
         $_id = Auth::user()->id;
-        $user = DB::table('users')
+        $users = DB::table('users')
             ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-            ->where('project_id',$user->project_id)->first();
+            ->where('project_id',$users->project_id)->first();
         
         if($project==null)
         {
             DB::table('waitconfirm')->insert(
-                ['project_id' => $user->project_id, 'booking_id1' => $id]
+                ['project_id' => $users->project_id, 'booking_id1' => $id]
             );
         }
         else if(($project->booking_id1)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id1' => $id]);
         }
         else if(($project->booking_id2)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id2' => $id]);
         }
         else if(($project->booking_id3)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id3' => $id]);
         }
         else{
