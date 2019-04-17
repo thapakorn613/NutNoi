@@ -159,6 +159,78 @@ class UserController extends Controller
     }
 
 
+    public function addproject()
+    {
+        $user = Auth::user();
+        $check = Auth::user()->project_id;
+        if($check!=null)
+        {
+            
+            $user = Auth::user();
+            $_booking_id = Auth::user()->booking_id;
+            $booking = DB::table('timebooking')
+                ->where('booking_id',$_booking_id)->get();
+
+
+                
+           
+            return view('profile',compact('user','booking') );
+        }
+
+
+
+        $teacher = DB::table('teacher')->get();
+       
+        return view('addproject',['teacher' => $teacher] );
+    }
+
+    public function addproject_db(Request $request)
+    {
+        $t1 =$request->get('teacher1');
+        $t2 = $request->get('teacher2');
+        $t3 = $request->get('teacher3');
+        $name = $request->get('name');
+        
+        echo $t2;
+
+        if($t1==$t2 || $t1==$t3 || $t2==$t3)
+        {
+            $teacher = DB::table('teacher')->get();
+       
+            return view('addproject',['teacher' => $teacher] );
+        }
+        $user = Auth::user();
+        $check = Auth::user()->project_id;
+        if($check==null)
+        {
+            DB::table('project')->insert(
+                ['project_name' => $name, 'teacher_id1' => $t1, 'teacher_id2' => $t2, 'teacher_id3' => $t3]
+            );
+
+
+        $p_id =     DB::table('project')
+        ->where('project_name',$name)->first();
+
+
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['project_id' => $p_id->id]);
+        }
+
+            $user = Auth::user();
+            $_booking_id = Auth::user()->booking_id;
+            $booking = DB::table('timebooking')
+                ->where('booking_id',$_booking_id)->get();
+
+
+                
+           
+            return view('profile',compact('user','booking') );
+        
+    }
+
+
+
     public function setBooking($id)
     {
         $_id = Auth::user()->id;
