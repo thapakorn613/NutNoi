@@ -66,9 +66,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function firstAddBooking()
     {
-        //
+        $users = Auth::user();
+        DB::table('users')
+            ->where('project_id', $users->project_id)
+            ->update(['haveWaitTable' => 1]);
+        $projectWait = DB::table('waitconfirm')
+            ->where('project_id',$users->project_id)->first();
+
+        if($projectWait==null)
+        {
+            DB::table('waitconfirm')->insert(
+                ['project_id' => $users->project_id]
+            );
+        }
+        return view('warning.afterFirstAdd');
     }
 
     public function showTable()
@@ -82,19 +95,6 @@ class UserController extends Controller
             ->where('id',$users->project_id)->first();
         $timeUser = DB::table('timebooking')
             ->where('project_id',$users->project_id)->first();
-        DB::table('users')
-            ->where('project_id', $users->project_id)
-            ->update(['haveWaitTable' => 1]);
-
-        $projectWait = DB::table('waitconfirm')
-            ->where('project_id',$users->project_id)->first();
-
-        if($projectWait==null)
-        {
-            DB::table('waitconfirm')->insert(
-                ['project_id' => $users->project_id]
-            );
-        }
         return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
     }
     /**
@@ -154,31 +154,23 @@ class UserController extends Controller
             ->where('booking_id',$_booking_id)->get();
         $timebookingTable = DB::table('timebooking')->get();
         $waitTable = DB::table('waitconfirm')
-                ->where('project_id',$user->project_id)->first();
-        return view('profile',['timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
+            ->where('project_id',$user->project_id)->first();
+        $project = DB::table('project')
+            ->where('id',$user->project_id)->first();
+        return view('profile',['project'=>$project,'timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
     }
 
 
     public function addproject()
     {
-        $user = Auth::user();
-        $check = Auth::user()->project_id;
-        if($check!=null)
+        $users = Auth::user();
+        if($users->project_id !=null)
         {
-            
-            $user = Auth::user();
-            $_booking_id = Auth::user()->booking_id;
-            $booking = DB::table('timebooking')
-                ->where('booking_id',$_booking_id)->get();
-
-
-                
-           
-            return view('profile',compact('user','booking') );
+            $users = Auth::user();
+            $project = DB::table('project')
+                ->where('id',$users->project_id)->first();
+            return view('warning/afterAddBooking',['project'=>$project,'users'=>$users] );
         }
-
-
-
         $teacher = DB::table('teacher')->get();
        
         return view('addproject',['teacher' => $teacher] );

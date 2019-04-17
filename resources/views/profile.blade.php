@@ -6,26 +6,38 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Profile</div>
-
-                <div class="card-body">
+                <div class="card-body ">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                        
                     @endif
-                    
                     <table class="table table-bordered table-striped">
                     <tr><th>first name</th>
                     <td>{{$user->name}}</td>  
                     <tr><th>Email</th>
-                    <td>{{$user->email}}</td>  
-                    <tr><th>Booking</th>
-                    @if ( $user->booking_id != NULL )
-                        <td>{{$user->booking_id}}</td> 
-                    @else
-                        <td>ยังไม่ได้ถูก Confirm</td>
-                    @endif
+                    <td>{{$user->email}}</td> 
+                    <tr>
+                        <th>Project ID</th> 
+                        @if ( $user->project_id != NULL )
+                            <td>{{$user->project_id}}</td> 
+                        @else
+                            <td>ยังไม่มีข้อมูลในระบบ</td>
+                        @endif
+                    <tr>
+                        <th>Project Name</th> 
+                        @if ( $project->project_name != NULL )
+                            <td>{{$project->project_name}}</td> 
+                        @else
+                            <td>ยังไม่มีข้อมูลในระบบ</td>
+                        @endif 
+                    <tr>
+                        <th>Booking</th>
+                        @if ( $user->booking_id != NULL )
+                            <td>{{$user->booking_id}}</td> 
+                        @else
+                            <td>ยังไม่ได้ถูก Confirm</td>
+                        @endif
                     </tr>
                     </table>   
                     <table boarder="1">
