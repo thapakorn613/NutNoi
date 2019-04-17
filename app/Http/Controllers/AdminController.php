@@ -62,5 +62,6 @@ class AdminController extends Controller
             ->update(['status_confirm' => null]);
         return view('warning/afterCancel'); 
     } 
+
    
 }

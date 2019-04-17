@@ -15,10 +15,15 @@
                     
                     @endif
                     **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
+                    +++++<br>
+                        ตราบใดที่ยังไม่มีการ Confirm จาก Admin ก็ยังคงสามารถแก้ไขเวลาแล้วอันดับได้นะจ้ะ
+                        อิอิ งุงิ คุคิ กรีน<br>
+                    +++++
                     <br>
                     <td>
-                        <a class="btn btn-success" href="/manager" >back to Manager</a>
+                        <a class="btn btn-success" href="/home/table" >back to show table page</a>
                     </td>
+                    <br>
                 </div>
             </div>
         </div>
