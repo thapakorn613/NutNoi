@@ -48895,7 +48895,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read property 'parseComponent' of undefined\n    at parse (D:\\590610613_3Lesson2\\261361_SoftwareEng\\NutNoi\\project\\nutnoi-master\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:14:23)\n    at Object.module.exports (D:\\590610613_3Lesson2\\261361_SoftwareEng\\NutNoi\\project\\nutnoi-master\\node_modules\\vue-loader\\lib\\index.js:67:22)");
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read property 'parseComponent' of undefined\n    at parse (C:\\xampp\\htdocs\\NutNoi\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:14:23)\n    at Object.module.exports (C:\\xampp\\htdocs\\NutNoi\\node_modules\\vue-loader\\lib\\index.js:67:22)");
 
 /***/ }),
 
@@ -48917,8 +48917,8 @@ throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.j
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\590610613_3Lesson2\261361_SoftwareEng\NutNoi\project\nutnoi-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\590610613_3Lesson2\261361_SoftwareEng\NutNoi\project\nutnoi-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\NutNoi\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\NutNoi\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

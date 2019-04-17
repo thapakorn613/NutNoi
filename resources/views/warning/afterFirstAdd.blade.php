@@ -14,13 +14,10 @@
                         </div>
                     
                     @endif
-                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด <br><br>
-                    @if ($users->project_id != null)
-                        คุณได้มี Project ID แล้วเรียบร้อย
-                    @endif
+                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
                     <br>
                     <td>
-                        <td><a class="btn btn-success" href="/booking/addproject" >Add Project</a></td>
+                    <td><a class="btn btn-success" href="/booking/addproject" >Add Project</a></td>
                     </td>
                     <br>
                 </div>
