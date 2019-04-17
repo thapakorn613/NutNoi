@@ -106,12 +106,11 @@
                     </div>
                     <!-- End main navigation -->
                 </div>
-            </div>
-      
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+            </div>   
+    </div> 
+    <div class="triangle"></div>
+    <main class="py-4">
+       @yield('content')
+    </main>
 </body>
 </html>

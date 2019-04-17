@@ -29,7 +29,7 @@
 **********************************************************************/
  body {
     font-family:'Roboto', sans-serif;
-    color: #FFF;
+    color: rgb(12, 10, 10);
     line-height:1.2em;
     font-size:17px;
     line-height:20px;
@@ -273,11 +273,11 @@ p {
     width:80px;
     height:80px;
     font-size:40px;
-    color:#fff;
+    color:rgb(0, 0, 0);
     text-decoration:none;
     line-height: 70px;
     text-align: center;
-}
+}s
 .thumbnail:hover .more {
     top:40%;
     margin-top:-40px;
@@ -323,19 +323,7 @@ p {
 /*
 2.4 Socail icons
 ************/
- .social {
-    list-style: none;
-    float: none;
-    position:relative;
-    margin:5px; auto;
-}
-.social li {
-    display:inline-block;
-    line-height: 32px;
-    font-family:'Porta';
-    font-size: 32px;
-    padding:0 5px;
-}
+ 
 .social li a {
     margin:0;
     padding:0;
