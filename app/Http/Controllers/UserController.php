@@ -130,6 +130,22 @@ class UserController extends Controller
         return view('profile',compact('user','booking') );
     }
 
+    public function showproject()
+    {
+       
+
+            $project = DB::table('project')->get();
+           
+
+            $user = DB::table('users')->get();
+
+            $teacher = DB::table('teacher')->get();
+           
+
+       
+            return view('showallproject', ['project' => $project,'teacher'=>$teacher,'user'=>$user]);
+    }
+
 
     public function addproject()
     {
