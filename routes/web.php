@@ -36,6 +36,8 @@ Route::any('/profile/{id?}',  'UserController@profile');
 Route::any('/edittime2/{id?}',  'UserController@edittime2');
 
 Route::any('/mywaittime',  'UserController@mywaittime');
+Route::any('/addproject',  'UserController@addproject');
+Route::any('/addprojectdb',  'UserController@addproject_db');
 
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
 
