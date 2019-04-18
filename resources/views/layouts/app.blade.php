@@ -109,8 +109,89 @@
             </div>   
     </div> 
     <div class="triangle"></div>
-    <main class="py-4">
-       @yield('content')
-    </main>
+    <div class="container">
+            @yield('content')
+    </div>
+       
+    
+        <!-- Start home section -->
+        <div id="home">
+            <!-- Start cSlider -->
+            <div id="da-slider" class="da-slider">
+                <div class="triangle"></div>
+                <!-- mask elemet use for masking background image -->
+                <div class="mask"></div>
+                <!-- All slides centred in container element -->
+                <div class="container">
+                    <div id='banner'>
+                        <div class='slides_container'>
+                            <div>
+                                <a href='#'><img src='images/slide2.png'></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End home section -->
+       
+       
+        <!-- Newsletter section start -->
+        <div class="section third-section">
+            <div class="container newsletter">
+                <div class="sub-section">
+                    <div class="title clearfix">
+                        <div class="pull-left">
+                            <h3>NUTNOI tdc.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="success-subscribe" class="alert alert-success invisible">
+                    <strong>Well done!</strong>You successfully subscribet to our newsletter.</div>
+                <div class="row-fluid">
+                    <div class="span5">
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    </div>
+                    <div class="span7">
+                        <form class="inline-form">
+                            <input type="email" name="email" id="nlmail" class="span8" placeholder="Enter your email" required />
+                            <button id="subscribe" class="button button-sp">Subscribe</button>
+                        </form>
+                        <div id="err-subscribe" class="error centered">Please provide valid email address.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Newsletter section end -->
+       
+        <!-- Footer section start -->
+        <div class="footer">
+            <p>&copy; 2019 make by <a href="https://github.com/thapakorn613/NutNoi">NUTNOI</a>, <a href="http://goo.gl/NM84K2">Documentation</a></p>
+        </div>
+        <!-- Footer section end -->
+        <!-- ScrollUp button start -->
+        <div class="scrollup">
+            <a href="#">
+                <i class="icon-up-open"></i>
+            </a>
+        </div>
+        <!-- ScrollUp button end -->
+        <!-- Include javascript -->
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mixitup.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="js/jquery.cslider.js"></script>
+        <script type="text/javascript" src="js/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="js/jquery.inview.js"></script>
+        <!-- Load google maps api and call initializeMap function defined in app.js -->
+        <script async="" defer="" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
+        <!-- css3-mediaqueries.js for IE8 or older -->
+        <!--[if lt IE 9]>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/app.js"></script>
+    
 </body>
 </html>
