@@ -14,10 +14,10 @@
                         </div>
                     
                     @endif
-                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด <br><br>
+                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
                     <br>
                     <td>
-                        <td><a class="btn btn-success" href="/home/table" >Add Booking</a></td>
+                    <td><a class="btn btn-success" href="/booking/addproject" >Add Project</a></td>
                     </td>
                     <br>
                 </div>

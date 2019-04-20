@@ -13,6 +13,7 @@
   --purple: #9561e2;
   --pink: #f66D9b;
   --red: #e3342f;
+  --brown: #783F05 ;
   --orange: #f6993f;
   --yellow: #ffed4a;
   --green: #38c172;
@@ -65,7 +66,7 @@ section {
 }
 
 body {
-  margin: 0;
+  margin: 20px;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
@@ -96,7 +97,7 @@ h6 {
 }
 
 p {
-  margin-top: 0;
+  margin-top: 50px;
   margin-bottom: 1rem;
 }
 
@@ -581,6 +582,7 @@ pre code {
 
 .container {
   width: 100%;
+  left: 20px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -4341,7 +4343,17 @@ input[type=button].btn-block {
 .tab-content > .active {
   display: block;
 }
-
+.navbar-nav {
+  width: 100%;
+  text-align: center;
+}
+.navbar-nav > li {
+  float: none;
+  display: inline-block;
+}
+.navbar-nav > li.navbar-right {
+  float: right !important;
+}
 .navbar {
   position: relative;
   display: flex;
@@ -4375,7 +4387,7 @@ input[type=button].btn-block {
 }
 
 .navbar-nav {
-  display: flex;
+  display: auto;
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
@@ -4742,7 +4754,7 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color:  brown;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
