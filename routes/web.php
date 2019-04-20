@@ -23,8 +23,8 @@ Route::get('/manager', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin');
 
-Route::any('/manager/{id?}','AdminController@toCheck');
-Route::any('/manager/forEdit/{id?}','AdminController@forEdit');
+Route::get('/editmanager/{id?}','AdminController@toCheck');
+Route::get('/editmanager/{id?}','AdminController@forEdit');
 Route::any('/manager/confirm/{id?}/{asd?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 
@@ -44,5 +44,5 @@ Route::any('/home/table/delete/booking_id1/{id?}', 'UserController@deleteBooking
 Route::any('/home/table/delete/booking_id2/{id?}', 'UserController@deleteBookingID2');
 Route::any('/home/table/delete/booking_id3/{id?}', 'UserController@deleteBookingID3');
 
-Route::get('/home/table', 'UserController@showTable' );
+Route::any('/table', 'UserController@showTable' );
 
