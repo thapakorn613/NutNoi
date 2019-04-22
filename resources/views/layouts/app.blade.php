@@ -118,9 +118,9 @@
         <div class="mask"></div>
         <div class="container">               
             
-            <div class="offset1"> 
+            
             @yield('content')
-            </div>
+           
           
         </div>
     </div>
