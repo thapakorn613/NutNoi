@@ -28,6 +28,7 @@ Route::any('/manager/forEdit/{id?}','AdminController@forEdit');
 Route::any('/manager/confirm/{id?}/{asd?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 
+Route::any('/showproject',  'UserController@showproject');
 Route::any('/profile/{id?}',  'UserController@profile');
 Route::any('/edittime2/{id?}',  'UserController@edittime2');
 Route::any('/mywaittime',  'UserController@mywaittime');
@@ -43,5 +44,5 @@ Route::any('/home/table/delete/booking_id1/{id?}', 'UserController@deleteBooking
 Route::any('/home/table/delete/booking_id2/{id?}', 'UserController@deleteBookingID2');
 Route::any('/home/table/delete/booking_id3/{id?}', 'UserController@deleteBookingID3');
 
-Route::get('/home/table', 'UserController@showTable' );
+Route::get('/table', 'UserController@showTable' );
 

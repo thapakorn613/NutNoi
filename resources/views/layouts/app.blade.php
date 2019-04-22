@@ -42,7 +42,7 @@
                         <ul class="nav" id="top-navigation">
                             @guest
                             <li class="active">
-                                <a href="#home">Home</a>
+                                <a href="/home">Home</a>
                             </li>
                             
                             
@@ -59,27 +59,35 @@
                         @else
 
                             @if (Auth::user()->type != "admin" && Auth::user()->project_id != NULL && Auth::user()->haveWaitTable != NULL )
-                            <li class="nav-item">
-                                <a class="nav-link" href='/home/table' >{{ __('ShowTable') }}</a>
-                            </li>
-                            @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('UserController@profile') }}" >{{ __('Profile') }}</a>
-                            </li>
-                            @if (Auth::user()->type == "admin")
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href='/home/table' >{{ __('ShowTable') }}</a>
+                                </li>
                             @endif
                             @if (Auth::user()->type != "admin")
-                                @if (Auth::user()->haveWaitTable != NULL && Auth::user()->project_id != NULL)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('UserController@profile') }}" >{{ __('Profile') }}</a>
+                                </li>
+                            @else 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
+                                </li>
+                            @endif
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('show') }}</a>
+                            </li>
+                            @if (Auth::user()->type != "admin")
+                                @if (Auth::user()->haveWaitTable != NULL && Auth::user()->project_id == NULL)
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ action('UserController@addproject') }}" >{{ __('Add Project') }}</a>
                                     </li>
                                 @endif
                             @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if (Auth::user()->type != "admin")
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ action('UserController@profile') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @endif 
                                     {{ Auth::user()->name }} 
                                 </a>
 
@@ -102,12 +110,11 @@
                     </div>
                     <!-- End main navigation -->
                 </div>
-            </div>
-      
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+            </div>   
+    </div> 
+    <div class="triangle"></div>
+    <main class="py-4">
+       @yield('content')
+    </main>
 </body>
 </html>
