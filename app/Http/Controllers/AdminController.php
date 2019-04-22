@@ -52,6 +52,8 @@ class AdminController extends Controller
         return view('warning/afterConfirm'); 
     }   
 
+    
+
     public function cancel($p_id)
     {
         DB::table('users')

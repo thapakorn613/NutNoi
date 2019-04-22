@@ -29,11 +29,10 @@
     <div id="app">
         <div class="navbar">
             <div class="navbar-inner">
-                
                 <a>
-                        <img src="{{ asset('images/logo.png') }}" width="120" height="90" alt="Logo" />
+                    <img src="{{ asset('images/logo.png') }}" width="120" height="90" alt="Logo" />
                         <!-- This is website logo -->
-                    </a>
+                </a>
                     <!-- Navigation button, visible on small resolution -->
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <i class="icon-menu"></i>
