@@ -23,8 +23,8 @@ Route::get('/manager', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin');
 
-Route::any('/manager/{id?}','AdminController@toCheck');
-Route::any('/manager/forEdit/{id?}','AdminController@forEdit');
+Route::get('/editmanager/{id?}','AdminController@toCheck');
+Route::get('/editmanager/{id?}','AdminController@forEdit');
 Route::any('/manager/confirm/{id?}/{asd?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 

@@ -381,11 +381,12 @@ a:focus {
 }
 
 .offset2 {
-  margin-left: 180px;
+  margin-left: 0px;
 }
 
 .offset1 {
-  margin-left: 100px;
+  margin-top: 50px;
+  
 }
 
 .row-fluid {
@@ -615,8 +616,8 @@ a:focus {
 }
 
 .container {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 50px;
+  margin-left: 0px;
   *zoom: 1;
 }
 
