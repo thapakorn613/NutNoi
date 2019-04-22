@@ -616,8 +616,8 @@ a:focus {
 }
 
 .container {
-  margin-right: 50px;
-  margin-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
   *zoom: 1;
 }
 
