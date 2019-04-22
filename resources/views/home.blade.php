@@ -30,7 +30,7 @@
                             <td><a class="btn btn-success" href="{{ action('UserController@firstAddBooking')}}" >จอง</a></td>
                             </tr>
                         @elseif ($users->project_id != NULL && $users->booking_id != NULL)
-                            <tr><td>คุณได้รับการยืนยัตนเเล้ว โปรดดูที่ Profile</td></tr>
+                            <tr><td>คุณได้รับการยืนยันตนเเล้ว โปรดดูที่ Profile</td></tr>
                         @elseif ($users->type == "admin")
                         @else
                             <tr>
