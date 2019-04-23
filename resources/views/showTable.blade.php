@@ -35,6 +35,7 @@
                                         <td>Booking ID 1</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
+=======
                                         <td><a class="btn btn-success" href="#" >up</a>
                                         <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >down</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>

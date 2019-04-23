@@ -36,6 +36,7 @@ Route::any('/mywaittime',  'UserController@mywaittime');
 Route::any('/booking/addproject',  'UserController@addproject');
 Route::any('/booking/addprojectdb',  'UserController@addproject_db');
 Route::any('/booking/addFirst',  'UserController@firstAddBooking');
+Route::any('/showproject',  'UserController@showproject');
 
 
 Route::get('/table', 'UserController@showTable' );
