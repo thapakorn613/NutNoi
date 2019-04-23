@@ -17,7 +17,7 @@
                     **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด <br><br>
                     <br>
                     <td>
-                        <td><a class="btn btn-success" href="/table" >Add Booking</a></td>
+                        <td><a class="btn btn-success" href="/table" >Go to Manager</a></td>
                     </td>
                     <br>
                 </div>

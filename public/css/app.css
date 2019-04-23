@@ -66,7 +66,7 @@ section {
 }
 
 body {
-  margin: 0;
+  margin: 20px;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
@@ -97,7 +97,7 @@ h6 {
 }
 
 p {
-  margin-top: 0;
+  margin-top: 50px;
   margin-bottom: 1rem;
 }
 
@@ -4754,7 +4754,7 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color:  brown;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;

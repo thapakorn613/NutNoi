@@ -38,7 +38,7 @@
 
         <div class="navbar-inner">
         
-            <div class="container">
+            
             <a>
                     <img src="images/logo.png" width="120" height="90" alt="Logo" />
                     <!-- This is website logo -->
@@ -50,16 +50,17 @@
                 <!-- Main navigation -->
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav" id="top-navigation">
-                        <li class="active">
-                            <a href="#home">Home</a>
-                        </li>
-                       
-                        <li>
+                        
+                             <li>
+                                <a href="{{ url('/home') }}">Home</a>
+                            </li>  
+                        
                         @if (Route::has('login'))
                         
                             @auth
-                                <a href="{{ url('/home') }}">Home</a>
+                             
                                 @else
+                                <li>
                                 <a href="{{ route('login') }}">Login</a>
                                 </li>
                             @if (Route::has('register'))
@@ -75,7 +76,7 @@
                     </ul>
                 </div>
                 <!-- End main navigation -->
-            </div>
+            
         </div>
     </div>
                 
@@ -89,19 +90,16 @@
         <div id="home">
             <!-- Start cSlider -->
             <div id="da-slider" class="da-slider">
-                <div class="triangle"></div>
+            
+                
+                    <a href='#'><img src='images/banner.png'  width="1900" height="1200"   ></a>
+                
                 <!-- mask elemet use for masking background image -->
-                <div class="mask"></div>
+                
                 <!-- All slides centred in container element -->
-                <div class="container">
-                    <div id='banner'>
-                        <div class='slides_container'>
-                            <div>
-                                <a href='#'><img src='images/slide2.png'></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
+                  
+               
             </div>
         </div>
         <!-- End home section -->

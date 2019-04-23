@@ -162,18 +162,10 @@ class UserController extends Controller
 
     public function showproject()
     {
-       
-
-            $project = DB::table('project')->get();
-           
-
-            $user = DB::table('users')->get();
-
-            $teacher = DB::table('teacher')->get();
-           
-
-       
-            return view('showallproject', ['project' => $project,'teacher'=>$teacher,'user'=>$user]);
+        $project = DB::table('project')->get();
+        $user = DB::table('users')->get();
+        $teacher = DB::table('teacher')->get();
+        return view('showallproject', ['project' => $project,'teacher'=>$teacher,'user'=>$user]);
     }
 
 
@@ -188,7 +180,6 @@ class UserController extends Controller
             return view('warning/afterAddBooking',['project'=>$project,'users'=>$users] );
         }
         $teacher = DB::table('teacher')->get();
-       
         return view('addproject',['teacher' => $teacher] );
     }
 
@@ -229,10 +220,6 @@ class UserController extends Controller
             $_booking_id = Auth::user()->booking_id;
             $booking = DB::table('timebooking')
                 ->where('booking_id',$_booking_id)->get();
-
-
-                
-           
             return view('profile',compact('user','booking') );
         
     }
@@ -242,34 +229,34 @@ class UserController extends Controller
     public function setBooking($id)
     {
         $_id = Auth::user()->id;
-        $user = DB::table('users')
+        $users = DB::table('users')
             ->where('id',$_id)->first();
 
         $project = DB::table('waitconfirm')
-            ->where('project_id',$user->project_id)->first();
+            ->where('project_id',$users->project_id)->first();
         
         if($project==null)
         {
             DB::table('waitconfirm')->insert(
-                ['project_id' => $user->project_id, 'booking_id1' => $id]
+                ['project_id' => $users->project_id, 'booking_id1' => $id]
             );
         }
         else if(($project->booking_id1)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id1' => $id]);
         }
         else if(($project->booking_id2)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id2' => $id]);
         }
         else if(($project->booking_id3)==null)
         {
             DB::table('waitconfirm')
-            ->where('project_id', $user->project_id)
+            ->where('project_id', $users->project_id)
             ->update(['booking_id3' => $id]);
         }
         else{
@@ -408,6 +395,80 @@ class UserController extends Controller
             ->update(['booking_id3' => null]);
         return view('warning/afterDeleteBookingID'); 
     } 
+
+    
+    public function sliding($type,$num)
+    {
+        $p_id = Auth::user()->project_id;
+        if ($type == "8"){
+           if ($num == "1"){
+            $bookingid_target = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            $bookingid_target_temp = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id2' => $bookingid_target->booking_id1]);
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id1' => $bookingid_target_temp->booking_id2]);
+            
+            return view('warning/afterSliding');
+           }
+           else if ($num == "2"){
+            $bookingid_target = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            $bookingid_target_temp = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id2' => $bookingid_target_temp->booking_id3]);
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id3' => $bookingid_target->booking_id2]);
+            return view('warning/afterSliding');
+           }
+           else {
+            echo "Error ";
+            }
+        }
+        else if ($type == "9"){
+            if ($num == "2"){
+                $bookingid_target = DB::table('waitconfirm')
+                    ->where('project_id', $p_id)->first();
+                $bookingid_target_temp = DB::table('waitconfirm')
+                    ->where('project_id', $p_id)->first();
+                DB::table('waitconfirm')
+                    ->where('project_id', $p_id)
+                    ->update(['booking_id2' => $bookingid_target_temp->booking_id1]);
+                DB::table('waitconfirm')
+                    ->where('project_id', $p_id)
+                    ->update(['booking_id1' => $bookingid_target->booking_id2]);
+                return view('warning/afterSliding');
+           }
+           else if ($num == "3"){
+            $bookingid_target = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            $bookingid_target_temp = DB::table('waitconfirm')
+                ->where('project_id', $p_id)->first();
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id3' => $bookingid_target_temp->booking_id2]);
+            DB::table('waitconfirm')
+                ->where('project_id', $p_id)
+                ->update(['booking_id2' => $bookingid_target->booking_id3]);
+            return view('warning/afterSliding'); 
+       }
+           else {
+               echo "Error ";
+           }
+        }
+        else {
+            echo "Error ";
+            return view('warning/afterSliding');
+        }
+        return view('warning/afterSliding'); 
+    }
 
 }
 

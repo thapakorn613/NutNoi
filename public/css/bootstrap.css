@@ -381,11 +381,12 @@ a:focus {
 }
 
 .offset2 {
-  margin-left: 180px;
+  margin-left: 0px;
 }
 
 .offset1 {
-  margin-left: 100px;
+  margin-top: 50px;
+  
 }
 
 .row-fluid {

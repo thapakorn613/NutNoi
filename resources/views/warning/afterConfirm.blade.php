@@ -15,6 +15,7 @@
                     
                     @endif
                     Your time has been selected, Please check on your profile.
+                    
                     <br>
                     <td>
                         <a class="btn btn-success" href="/manager" >back to Manager</a>
