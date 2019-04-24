@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="card text-center">
+    <div class="card text-center">
         <div class="col-md-8">
             @if ( $waitTable->status_confirm == '1')
                 <div class="card">
@@ -71,7 +71,11 @@
                                 <td>{{$time[$i]->datetime}}</td>
                                 @if ($users->booking_id == $waitTable->booking_id3)
                                 <td><a class="btn btn-success" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >confirmed</a></td>
-                                @else <td><a class="btn btn-primary" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >confirm</a></td>
+                                @else <td><a id="myBtn" class="btn btn-primary"  data-toggle="modal2" data-target="#myModal" >confirm</a></td>
+
+
+
+
                                 @endif
                             @endif
                         @endfor
@@ -81,4 +85,14 @@
         </div>
     </div>
 </div>
+
+
+<div id="myModal" class="modal2">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <td><a class="btn btn-primary" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >confirm</a></td>
+        </div>
+
 @endsection
