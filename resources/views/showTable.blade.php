@@ -1,12 +1,21 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">ข้อมูลโปรเจคคร่าวๆของ {{$users->name}}</div>
+                <div class="card-header">
+                    <div class="alert alert-primary" role="alert">
+                        <h1>ข้อมูลโปรเจคของ {{$users->name}}</h1>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped ">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <table class="table table-bordered">
                         <tr> 
                         <th>Project ID</th>
                         <th>Name     Project</th>
@@ -17,9 +26,13 @@
                     </table>  
                     @if ( $users->booking == NULL && $waitTable->status_confirm == NULL)
                         @if ($waitTable->status_submit == NULL )
-                            <a class="btn btn-danger"  href="#" >+++++++++++++++++++++++++++++ ตอนนี้คุณยังไม่ได้ Submit +++++++++++++++++++++++++++++</a>
+                            <div class="alert alert-danger" role="alert">
+                                ตอนนี้คุณยังไม่ได้ Submit
+                            </div>
                         @else
-                            <a class="btn btn-success" href="#" >+++++++++++++ ตอนนี้คุณได้ทำการ Submit เรียบร้อยเเล้ว กรุณารอการยืนยันจาก Admin +++++++++++++</a>
+                            <div class="alert alert-success" role="alert">
+                                ตอนนี้คุณได้ทำการ Submit เรียบร้อยเเล้ว กรุณารอการยืนยันจาก Admin
+                            </div>
                         @endif
                         <table class="table table-bordered table-striped">
                             <td>Order</td>
@@ -76,7 +89,7 @@
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>
-                            <td><a class="btn btn-success" href="{{ action('UserController@submitted',$users->project_id)}}" >SUBMIT</a></td>   
+                            <td><a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" >SUBMIT</a></td>   
                         </table>
                     @else
                         <table class="table table-bordered table-hover">
@@ -135,6 +148,21 @@
             </div>
         </div>
     </div>
-</div>
+
+
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <h3>click ok for add</h3>
+        <center><h1><td><a class="btn btn-primary" href="{{ action('UserController@submitted',$users->project_id)}}"  >ok</a></td><h1></center>
+     
+      </div>
+    </div>
+  </div>
+
+  
+
+
 @endsection
 

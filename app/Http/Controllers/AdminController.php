@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -74,9 +76,15 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => 1]);
-        $users = DB::table('users')
-            ->where('project_id', $p_id)->first();
-        return view('warning/afterConfirm',['users' => $users]); 
+            $users = DB::table('users')
+            ->where('project_id',$p_id)->first();
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$p_id)->first();
+        $time= DB::table('timebooking')->get();
+        $datatimeUser = DB::table('timebooking')
+            ->where('booking_id',$users->booking_id)->first();
+        return view('checkTime' , ['users' => $users , 'waitTable' => $waitTable , 'time' => $time,'datatimeUser'=>$datatimeUser] );
+
     }   
 
     public function cancel($p_id)
@@ -87,16 +95,44 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => null]);
-        return view('warning/afterCancel'); 
+            $users = DB::table('users')
+            ->where('project_id',$p_id)->first();
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$p_id)->first();
+        $time= DB::table('timebooking')->get();
+        $datatimeUser = DB::table('timebooking')
+            ->where('booking_id',$users->booking_id)->first();
+        return view('checkTime' , ['users' => $users , 'waitTable' => $waitTable , 'time' => $time,'datatimeUser'=>$datatimeUser] );
     } 
 
-    public function sendEmail($p_id)
+    public function toSendEmail($p_id)
     {
+        $tProject = DB::table('project')
+            ->where('id',$p_id)->first();
         $teacher1 = DB::table('teacher')
-            ->where('project_id',$p_id);
+            ->where('id',$tProject->teacher_id1)->first();
+        $teacher2 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id2)->first();
+        $teacher3 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id3)->first();
         $users = DB::table('users')
             ->where('project_id', $p_id)->first();
-        return view('warning/beforeSendEmail',['users'=> $users,'teacher1' => $teacher1]); 
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$p_id)->first();
+        return view('sendEmail',['users'=> $users
+            ,'project' => $tProject
+            ,'teacher1' => $teacher1
+            ,'waitTable'=>$waitTable
+            ,'teacher1'=>$teacher1
+            ,'teacher2'=>$teacher2
+            ,'teacher3'=>$teacher3]); 
+    } 
+    public function sendEmail($p_id)
+    {
+        DB::table('project')
+            ->where('id',$p_id)
+            ->update(['send_email' => 1]);
+        return view('warning.afterSendEmail'); 
     } 
 
    

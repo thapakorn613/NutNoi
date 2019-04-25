@@ -25,7 +25,8 @@ Route::get('/manager', 'AdminController@admin')
 
 Route::get('/editmanager/{id?}','AdminController@toCheck');
 Route::get('/editmanager/forEdit/{id?}','AdminController@forEdit');
-Route::get('/manager/confirm/sendEmail/{p_id?}','AdminController@sendEmail');
+Route::get('/manager/confirm/sendEmail/{p_id?}','AdminController@toSendEmail');
+Route::get('/manager/confirm/sendEmail/sendComplete/{p_id?}','AdminController@sendEmail');
 Route::any('/manager/confirm/{id?}/{p_id?}','AdminController@confirm');
 Route::any('/manager/forEdit/cancel/{id?}/','AdminController@cancel');
 
@@ -40,6 +41,7 @@ Route::any('/booking/addFirst',  'UserController@firstAddBooking');
 Route::any('/showproject',  'UserController@showproject');
 Route::get('/addproject', 'AdminController@addproject' );
 Route::any('/addproject_db/addprojectdb', 'AdminController@addproject_db' );
+Route::any('/showstatic',  'UserController@showstatic');
 
 Route::get('/table', 'UserController@showTable' );
 Route::any('/admincheck/{id?}',  'UserController@admincheck');

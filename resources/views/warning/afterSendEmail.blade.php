@@ -14,24 +14,12 @@
                         </div>
                     
                     @endif
-                    Your time has been selected, Please check on your profile.
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                        <td> name </td>
-                        <td> email </td>
-                        <td> status </td>
-                        </tr>
-                        <tr>
-                        <td> name </td>
-                        <td> email </td>
-                        <td> email </td>
-                        </tr>
-
-                    </table>
+                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด <br><br>
                     <br>
                     <td>
-                        <a class="btn btn-success" href="/manager" >back to Manager</a>
+                        <td><a class="btn btn-success" href="/manager" >Add Booking</a></td>
                     </td>
+                    <br>
                 </div>
             </div>
         </div>

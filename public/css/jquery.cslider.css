@@ -1,11 +1,11 @@
 .da-slider {
     width: 100%;
-    min-width: 320px;
-    height: 520px;
+    min-width: 500px;
+    height: auto;
     position: relative;
     margin:0 auto;
     overflow: hidden;
-    background: transparent url(../images/Slider.png) repeat-x 0% center; /* Replace with your background image*/
+    background: transparent url(../images/slild1.png) repeat-x 0% center; /* Replace with your background image*/
     background-size:auto 100%;
     -webkit-transition: background-position 1s ease-out 0.3s;
     -moz-transition: background-position 1s ease-out 0.3s;
@@ -31,9 +31,10 @@
     filter: alpha(opacity=85);
 }
 .da-slider .container {
-    margin-top:30px;
+    margin-top:10px;
+    margin-bottom: 200px;
     position:relative;
-    height:100%;
+    height:auto;
 }
 .da-slide {
     position: absolute;
