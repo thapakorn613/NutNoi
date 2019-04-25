@@ -29,6 +29,31 @@ class AdminController extends Controller
         return view('checkTime' , ['waitTable' => $waitTable , 'time' => $time] );
     }   
 
+
+    public function addproject()
+    {
+        $project= DB::table('project')->get();
+            
+        $users= DB::table('users')->get();
+        return view('adminaddproject' , ['users' => $users , 'project' => $project] );
+    }   
+
+
+    public function addproject_db(Request $request)
+    {
+        $t1 =$request->get('users');
+        $t2 = $request->get('project');
+
+        DB::table('users')
+        ->where('id', $t1)
+        ->update(['project_id' => $t2]);
+
+        $project= DB::table('project')->get();
+            
+        $users= DB::table('users')->get();
+        return view('adminaddproject' , ['users' => $users , 'project' => $project] );
+    }   
+    
     public function forEdit($id)
     {
         $users = DB::table('users')
