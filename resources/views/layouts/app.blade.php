@@ -118,7 +118,7 @@
                 
             </div>   
     </div> 
-    <div id="da-slider" class="da-slider">
+    <div id="da-slider" class="da-slider" >
       
         <div class="mask"></div>
         <div class="container">               
