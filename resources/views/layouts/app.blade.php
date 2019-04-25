@@ -24,15 +24,16 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
         <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
         <link rel="shortcut icon" href="images/ico/favicon.ico">
-
-
-       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="app">
         <div class="navbar">
             <div class="navbar-inner">
-                <a>
+                
+                <a href="/home" class="">
                     <img src="{{ asset('images/logo.png') }}" width="120" height="90" alt="Logo" />
                         <!-- This is website logo -->
                 </a>
@@ -91,7 +92,7 @@
                             <li class="nav-item dropdown">
                                 @if (Auth::user()->type != "admin")
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ action('UserController@profile') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @endif 
                                     {{ Auth::user()->name }} 
                                 </a>
@@ -122,7 +123,7 @@
         <div class="mask"></div>
         <div class="container">               
             
-            <div class="offset1"> 
+            <div class="offset0"> 
             @yield('content')
             </div>
           
