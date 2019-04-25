@@ -72,7 +72,9 @@
                                     <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                                 </li>
                             @endif
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('show') }}</a>
                             </li>
