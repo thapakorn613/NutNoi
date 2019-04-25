@@ -95,6 +95,22 @@ class UserController extends Controller
             ->where('id',$users->project_id)->first();
         $timeUser = DB::table('timebooking')
             ->where('project_id',$users->project_id)->first();
+        //$timeTeacher = DB::table('teacher')
+          //  ->where('project_id',$users->project_id)->first();
+        $tProject = DB::table('project')
+            ->where('id',$users->project_id)->first();
+        $nTeacher1 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id1)->first();
+        $nTeacher2 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id2)->first();
+        $nTeacher3 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id3)->first();
+        
+        $this->getjson($nTeacher1);
+        $this->getjson($nTeacher2);
+        $this->getjson($nTeacher3);
+
+
         return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
     }
     /**
@@ -104,6 +120,46 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function getjson($url)
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        //CURLOPT_URL => "https://teamup.com/ksd952dt39h2ar9gxy/events?startDate=2019-04-21&endDate=2019-04-23",
+        CURLOPT_URL => $url->teamup."/events?startDate=2019-04-21&endDate=2019-04-23",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "Postman-Token: 97102fac-3f8c-4625-9d45-e860cdcf3da2",
+            "Teamup-Token: 7f889d147aa973f27bd3031666a619bb6cd7847fd9ff502052302036135c0693",
+            "cache-control: no-cache"
+        ),
+        ));
+    
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+    
+        curl_close($curl);
+    
+        if ($err) {
+        echo "cURL Error #:" . $err;
+        } else {
+            /*$response2 = json_decode($response);
+        echo $response->title;*/
+        $response2 = json_decode($response);
+        //$jss2 = json_decode($jss);
+        foreach ($response2->events as $i) {
+            echo $i->start_dt."\n"; 
+            echo $i->end_dt."\n";
+            echo "\n";
+            //echo $nTeacher1->teamup;
+          }
+        }
+    }
 
     public function update_to_database(Request $request, $id)
 

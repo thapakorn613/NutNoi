@@ -10,7 +10,7 @@
                     <table class="table table-bordered table-striped ">
                         <tr> 
                         <th>Project ID</th>
-                        <th>Name Project</th>
+                        <th>Name     Project</th>
                         <tr>
                         <td>{{$users->project_id}}</td>
                         <td>{{$project->project_name}}</td>
@@ -78,7 +78,7 @@
                                 @endif
                                 </tr>
                             @endfor
-                            @endfor
+                            
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>
