@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -11,7 +12,7 @@
                         <div class="span4">
                             <div class="centered service">
                                 <div class="circle-border zoom-in">
-                                <a href="{{ action('UserController@firstAddBooking')}}" class="brand"><img class="img-circle" src="images/note.png" alt="service 1">
+                                <a onclick="document.getElementById('id01').style.display='block'" class="brand"><img class="img-circle" src="images/note.png" alt="service 1">
                                 </a>
                                 </div>
                             <h3>จองคิว</h3>
@@ -83,4 +84,17 @@
         </div>
     </div>
 </div>
+
+
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <h3>click for confirm</h3>
+        <center><td><a class="btn btn-primary" href="{{ action('UserController@firstAddBooking')}}" >ok</a></td></center>
+        <p>Some text. Some text. Some text.</p>
+      </div>
+    </div>
+  </div>
+
 @endsection
