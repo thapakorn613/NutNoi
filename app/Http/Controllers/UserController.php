@@ -111,6 +111,7 @@ class UserController extends Controller
         $teacher3array = $this->getjson($nTeacher3);
 
         $intersecttime = $this->Intersect($teacher1array, $teacher2array, $teacher3array);
+        //echo json_encode($intersecttime);
         foreach ($intersecttime as $itst) {
             $date = date('Y-m-d', strtotime($itst));
             //$time = date('H:i:s', strtotime($itst));
@@ -120,6 +121,8 @@ class UserController extends Controller
             //echo $dtt;
             $this->insertdatetime($dtt);
         }
+
+
 
         
        
@@ -143,10 +146,41 @@ class UserController extends Controller
     public function insertdatetime($dt)
     {
         //$dtime = '2019-03-29 22:30:00';
+        //echo json_encode($dt);
         $users = Auth::user();
-        DB::table('timebooking')->insert(
+        $timeUser = DB::table('timebooking')
+        ->where('project_id',$users->project_id)->get();
+        //echo json_encode($timeUser[0]->datetime);
+        //echo $dt;
+        /*if($timeUser->datetime == $dt){
+            echo "allreadytime";
+        }else{
+            DB::table('timebooking')->insert(
             ['project_id' => $users->project_id,'datetime' => $dt]
-        );
+            );
+        }*/
+
+        foreach ($timeUser as $timetest) {
+            
+            if($timetest->datetime == $dt){
+                echo "allreadytime";
+                $num = '1';
+                break;
+            }else{
+                $num = '0';
+                echo"yes";
+            }
+
+        }
+
+        if($num == 0){
+            echo json_encode($timetest);
+            DB::table('timebooking')->insert(
+            ['project_id' => $users->project_id,'datetime' => $dt]
+            );
+        }
+
+        
         
 
     }
@@ -190,6 +224,7 @@ class UserController extends Controller
           }
 
         }
+        //echo json_encode($datearray);
         return($datearray);
     }
 
