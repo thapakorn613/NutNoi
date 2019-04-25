@@ -24,6 +24,9 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
         <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
         <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -118,9 +121,9 @@
         <div class="mask"></div>
         <div class="container">               
             
-            
+            <div class="offset0"> 
             @yield('content')
-           
+            </div>
           
         </div>
     </div>
