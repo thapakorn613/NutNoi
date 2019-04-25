@@ -76,6 +76,12 @@
                                 </li>
                             @endif
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showstatic') }}" >{{ __('showstiti') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('Project List') }}</a>
                             </li>
                             @if (Auth::user()->type != "admin")
