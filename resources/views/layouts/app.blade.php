@@ -114,18 +114,18 @@
                 
             </div>   
     </div> 
-    <div id="da-slider" class="da-slider" >
+    <div  class="da-slider" >
       
         <div class="mask"></div>
                        
-            
-            <div class="offset0"> 
+        <div class="container">     
             @yield('content')
+            
             </div>
-          
         
   
     </div>
+   
   
        
        

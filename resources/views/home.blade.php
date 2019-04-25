@@ -3,10 +3,31 @@
 @section('content')
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
+        <div class="row justify-content-center">
+        <div class="row-fluid">
+        <div class="span4">
+            <div class="centered service">
+            
+                
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="row justify-content-center">
+        <div class="row-fluid">
+        <div class="span4">
+            <div class="centered service">
+            
+                
+            </div>
+        </div>
+        </div>
+        </div>
     <div class="row justify-content-center">
+        
         <div class="col-md-8">
-            <div class="mask" id="service">
-                <div class="container">
+            <div  id="service">
+                
                     <div class="row-fluid">
                     @if ($users->project_id != NULL && $users->booking_id == NULL)
                         <div class="span4">
@@ -136,7 +157,7 @@
                     @endif
                     </div>
                 </div>
-            </div>
+           
         </div>
     </div>
 </div>
