@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +51,14 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => 1]);
-        return view('warning/afterConfirm'); 
+            $users = DB::table('users')
+            ->where('project_id',$p_id)->first();
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$p_id)->first();
+        $time= DB::table('timebooking')->get();
+        $datatimeUser = DB::table('timebooking')
+            ->where('booking_id',$users->booking_id)->first();
+        return view('checkTime' , ['users' => $users , 'waitTable' => $waitTable , 'time' => $time,'datatimeUser'=>$datatimeUser] );
     }   
 
     public function cancel($p_id)
@@ -60,7 +69,14 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => null]);
-        return view('warning/afterCancel'); 
+            $users = DB::table('users')
+            ->where('project_id',$p_id)->first();
+        $waitTable= DB::table('waitconfirm')
+            ->where('project_id',$p_id)->first();
+        $time= DB::table('timebooking')->get();
+        $datatimeUser = DB::table('timebooking')
+            ->where('booking_id',$users->booking_id)->first();
+        return view('checkTime' , ['users' => $users , 'waitTable' => $waitTable , 'time' => $time,'datatimeUser'=>$datatimeUser] );
     } 
 
    
