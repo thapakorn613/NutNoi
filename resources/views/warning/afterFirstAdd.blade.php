@@ -12,12 +12,11 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    
                     @endif
                     **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
                     <br>
                     <td>
-                    <td><a class="btn btn-success" href="/booking/addproject" >Add Project</a></td>
+                    <td><a class="btn btn-success" href="/table" >Add Project</a></td>
                     </td>
                     <br>
                 </div>

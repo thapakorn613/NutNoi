@@ -29,6 +29,31 @@ class AdminController extends Controller
         return view('checkTime' , ['waitTable' => $waitTable , 'time' => $time] );
     }   
 
+
+    public function addproject()
+    {
+        $project= DB::table('project')->get();
+            
+        $users= DB::table('users')->get();
+        return view('adminaddproject' , ['users' => $users , 'project' => $project] );
+    }   
+
+
+    public function addproject_db(Request $request)
+    {
+        $t1 =$request->get('users');
+        $t2 = $request->get('project');
+
+        DB::table('users')
+        ->where('id', $t1)
+        ->update(['project_id' => $t2]);
+
+        $project= DB::table('project')->get();
+            
+        $users= DB::table('users')->get();
+        return view('adminaddproject' , ['users' => $users , 'project' => $project] );
+    }   
+    
     public function forEdit($id)
     {
         $users = DB::table('users')
@@ -49,10 +74,10 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => 1]);
-        return view('warning/afterConfirm'); 
+        $users = DB::table('users')
+            ->where('project_id', $p_id)->first();
+        return view('warning/afterConfirm',['users' => $users]); 
     }   
-
-    
 
     public function cancel($p_id)
     {
@@ -63,6 +88,15 @@ class AdminController extends Controller
             ->where('project_id', $p_id)
             ->update(['status_confirm' => null]);
         return view('warning/afterCancel'); 
+    } 
+
+    public function sendEmail($p_id)
+    {
+        $teacher1 = DB::table('teacher')
+            ->where('project_id',$p_id);
+        $users = DB::table('users')
+            ->where('project_id', $p_id)->first();
+        return view('warning/beforeSendEmail',['users'=> $users,'teacher1' => $teacher1]); 
     } 
 
    
