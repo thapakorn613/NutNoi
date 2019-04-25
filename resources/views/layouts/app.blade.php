@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-responsive.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/pluton.css') }}" />
+        
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
         <![endif]-->
@@ -48,8 +49,6 @@
                             <li class="active">
                                 <a href="/home">Home</a>
                             </li>
-                            
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -58,20 +57,20 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                            
-
                         @else
-
                             @if (Auth::user()->type != "admin" && Auth::user()->project_id != NULL && Auth::user()->haveWaitTable != NULL )
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('UserController@showTable') }}" >{{ __('ShowTable') }}</a>
                                 </li>
-                            @endif
-                            @if (Auth::user()->type != "admin")
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('UserController@profile') }}" >{{ __('Profile') }}</a>
                                 </li>
-                            @else 
+                            @endif
+                            @if (Auth::user()->type == "admin")
+                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                                 </li>
@@ -121,18 +120,19 @@
                 
             </div>   
     </div> 
-    <div id="da-slider" class="da-slider">
+    <div  class="da-slider" >
       
         <div class="mask"></div>
-        <div class="container">               
-            
-            <div class="offset0"> 
+                       
+        <div class="container">     
             @yield('content')
+            
             </div>
-          
-        </div>
+        
+  
     </div>
-
+   
+  
        
        
         <!-- Newsletter section start -->
@@ -151,7 +151,10 @@
                     <div class="span5">
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
                     </div>
-                    
+                    <div class="span7">
+                       
+                        <div id="err-subscribe" class="error centered">Please provide valid email address.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,48 +193,6 @@
         <script type="text/javascript" src="js/app.js"></script>
 
 
-        <style>
-                body {font-family: Arial, Helvetica, sans-serif;}
-                
-                /* The Modal (background) */
-                .modal {
-                  display: none; /* Hidden by default */
-                  position: fixed; /* Stay in place */
-                  z-index: 1; /* Sit on top */
-                  padding-top: 100px; /* Location of the box */
-                  left: 0;
-                  top: 0;
-                  width: 100%; /* Full width */
-                  height: 100%; /* Full height */
-                  overflow: auto; /* Enable scroll if needed */
-                  background-color: rgb(0,0,0); /* Fallback color */
-                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                }
-                
-                /* Modal Content */
-                .modal-content {
-                  background-color: #fefefe;
-                  margin: auto;
-                  padding: 20px;
-                  border: 1px solid #888;
-                  width: 80%;
-                }
-                
-                /* The Close Button */
-                .close {
-                  color: #aaaaaa;
-                  float: right;
-                  font-size: 28px;
-                  font-weight: bold;
-                }
-                
-                .close:hover,
-                .close:focus {
-                  color: #000;
-                  text-decoration: none;
-                  cursor: pointer;
-                }
-                </style>
 
 <script>
         // Get the modal
@@ -261,6 +222,62 @@
         }
         </script>
 
+
+<script>
+    // Get the modal
+    var modal1 = document.getElementById('myModal1');
+    
+    // Get the button that opens the modal
+    var btn1 = document.getElementById("myBtn1");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn1.onclick = function() {
+      modal1.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal1.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+    }
+    </script>
+    
+<script>
+    // Get the modal
+    var modal2 = document.getElementById('myModal2');
+    
+    // Get the button that opens the modal
+    var btn2 = document.getElementById("myBtn2");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn2.onclick = function() {
+      modal2.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal2.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+    }
+    </script>
 
 </body>
 </html>
