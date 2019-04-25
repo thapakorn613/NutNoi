@@ -95,7 +95,7 @@
           <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
           <h3>click for confirm</h3>
           <center><td><a class="btn btn-primary" href="{{ action('AdminController@confirm',[$waitTable->booking_id1 , $waitTable->project_id])}}" >ok</a></td></center>
-          <p>Some text. Some text. Some text.</p>
+
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
             <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
             <h3>click for confirm</h3>
             <center><td><a class="btn btn-primary" href="{{ action('AdminController@confirm',[$waitTable->booking_id2 , $waitTable->project_id])}}" >ok</a></td></center>
-            <p>Some text. Some text. Some text.</p>
+   
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
             <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-display-topright">&times;</span>
             <h3>click for confirm</h3>
             <center><td><a class="btn btn-primary" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >ok</a></td></center>
-            <p>Some text. Some text. Some text.</p>
+         
           
           
           </div>
@@ -130,7 +130,7 @@
             <span onclick="document.getElementById('id04').style.display='none'" class="w3-button w3-display-topright">&times;</span>
             <h3>click for confirm</h3>
             <center><td><a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a> </td></center>
-            <p>Some text. Some text. Some text.</p>
+        
           
           
           </div>

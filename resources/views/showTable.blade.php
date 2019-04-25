@@ -154,9 +154,9 @@
     <div class="w3-modal-content">
       <div class="w3-container">
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        <h3>click for confirm</h3>
-        <center><td><a class="btn btn-primary" href="{{ action('UserController@submitted',$users->project_id)}}"  >ok</a></td></center>
-        <p>Some text. Some text. Some text.</p>
+        <h3>click ok for add</h3>
+        <center><h1><td><a class="btn btn-primary" href="{{ action('UserController@submitted',$users->project_id)}}"  >ok</a></td><h1></center>
+     
       </div>
     </div>
   </div>
