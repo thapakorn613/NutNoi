@@ -20,7 +20,8 @@
                             <td>{{$users->booking_id}}</td>
                             <td>{{$datatimeUser->datetime}}</td>
                             <td>
-                            <a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a>
+                                <a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a>
+                                <a class="btn btn-primary" href="{{action('AdminController@sendEmail',$users->project_id)}}" >send Email </a>
                             </td>
                             </tr>
                         </table>

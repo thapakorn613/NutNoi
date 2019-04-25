@@ -49,10 +49,10 @@ class AdminController extends Controller
         DB::table('waitconfirm')
             ->where('project_id', $p_id)
             ->update(['status_confirm' => 1]);
-        return view('warning/afterConfirm'); 
+        $users = DB::table('users')
+            ->where('project_id', $p_id)->first();
+        return view('warning/afterConfirm',['users' => $users]); 
     }   
-
-    
 
     public function cancel($p_id)
     {
@@ -63,6 +63,15 @@ class AdminController extends Controller
             ->where('project_id', $p_id)
             ->update(['status_confirm' => null]);
         return view('warning/afterCancel'); 
+    } 
+
+    public function sendEmail($p_id)
+    {
+        $teacher1 = DB::table('teacher')
+            ->where('project_id',$p_id);
+        $users = DB::table('users')
+            ->where('project_id', $p_id)->first();
+        return view('warning/beforeSendEmail',['users'=> $users,'teacher1' => $teacher1]); 
     } 
 
    
