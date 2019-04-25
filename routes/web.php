@@ -38,7 +38,8 @@ Route::any('/booking/addproject',  'UserController@addproject');
 Route::any('/booking/addprojectdb',  'UserController@addproject_db');
 Route::any('/booking/addFirst',  'UserController@firstAddBooking');
 Route::any('/showproject',  'UserController@showproject');
-
+Route::get('/addproject', 'AdminController@addproject' );
+Route::any('/addproject_db/addprojectdb', 'AdminController@addproject_db' );
 
 Route::get('/table', 'UserController@showTable' );
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
