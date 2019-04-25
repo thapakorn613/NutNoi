@@ -109,17 +109,7 @@ class UserController extends Controller
         $teacher1array = $this->getjson($nTeacher1);
         $teacher2array = $this->getjson($nTeacher2);
         $teacher3array = $this->getjson($nTeacher3);
-        //echo gettype($teacher1array);
 
-        /*foreach ($teacher1array as $t1) {
-            echo json_encode($t1)."\n";
-        }/*
-        foreach ($teacher2array as $t2) {
-            echo "number2".$t2."\n";
-        }
-        foreach ($teacher3array as $t3) {
-            echo "number3".$t3."\n";
-        }*/
         $intersecttime = $this->Intersect($teacher1array, $teacher2array, $teacher3array);
         foreach ($intersecttime as $itst) {
             $date = date('Y-m-d', strtotime($itst));
@@ -127,7 +117,7 @@ class UserController extends Controller
             $time = substr($itst,11,8);
             $dtt = $date." ".$time;
             //echo $time;
-            echo $dtt;
+            //echo $dtt;
             $this->insertdatetime($dtt);
         }
 
@@ -147,9 +137,6 @@ class UserController extends Controller
     function Intersect($array1, $array2, $array3) 
     { 
         $result = array_intersect($array1, $array2, $array3); 
-        //echo gettype(array_intersect($array1, $array2, $array3)); 
-        //array_push($result,array_intersect($array1, $array2, $array3));
-
         return($result); 
     } 
 
@@ -161,9 +148,7 @@ class UserController extends Controller
             ['project_id' => $users->project_id,'datetime' => $dt]
         );
         
-       /* DB::table('waitconfirm')->insert(
-            ['project_id' => $users->project_id, 'booking_id1' => $id]
-        );*/
+
     }
 
     public function getjson($url)
@@ -194,30 +179,16 @@ class UserController extends Controller
         if ($err) {
         echo "cURL Error #:" . $err;
         } else {
-            /*$response2 = json_decode($response);
-        echo $response->title;*/
+
         $response2 = json_decode($response);
         //$jss2 = json_decode($jss);
         $datearray =  [];
         foreach ($response2->events as $i) {
-            //echo $i->start_dt."\n"; 
-            //echo $i->end_dt."\n";
-            //$datearray =  array($i->start_dt);
+
             array_push($datearray,$i->start_dt);
-            //$startdate = $i->start_dt;
-            //$ddate = substr($startdate,0,10);
-            //$date = date('Y-m-d', strtotime($startdate));
-            //$time = date('H:i:s', strtotime($startdate));
-            //echo $time;
+
           }
-        /*foreach ($datearray as $subdate) {
-            echo $subdate."\n";
-        }
-        //print_r($datearray);
-        /*
-        for($i=0;$i < count($datearray);$i++){
-            echo $datearray[$i]; 
-        }*/
+
         }
         return($datearray);
     }
