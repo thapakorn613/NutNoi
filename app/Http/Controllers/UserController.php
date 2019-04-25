@@ -199,7 +199,7 @@ class UserController extends Controller
         $t3 = $request->get('teacher3');
         $name = $request->get('name');
         
-        echo $t2;
+        
 
         if($t1==$t2 || $t1==$t3 || $t2==$t3)
         {
@@ -215,19 +215,24 @@ class UserController extends Controller
                 ['project_name' => $name, 'teacher_id1' => $t1, 'teacher_id2' => $t2, 'teacher_id3' => $t3]
             );
             $temp1 = DB::table('teacher')->where('id',$t1)->first();
+            $num1 = $temp1->count2 + 1;
+
+            echo $num1;
             DB::table('teacher')
             ->where('id',$t1)
-            ->update(['count2' => ($temp1->count2++)]);
+            ->update(['count2' => $num1]);
 
             $temp2 = DB::table('teacher')->where('id',$t2)->first();
+            $num2 = $temp2->count2 + 1;
             DB::table('teacher')
             ->where('id', $t2)
-            ->update(['count2' => ($temp2->count2++)]);
+            ->update(['count2' => $num2]);
 
             $temp3 = DB::table('teacher')->where('id',$t3)->first();
+            $num3 = $temp3->count2 + 1;
             DB::table('teacher')
             ->where('id', $t3)
-            ->update(['count2' => ($temp1->count3++)]);
+            ->update(['count2' => $num3]);
 
 
 
@@ -249,11 +254,16 @@ class UserController extends Controller
                 ->update(['project_id' => $p_id->id]);
         }
 
-            $user = Auth::user();
-            $_booking_id = Auth::user()->booking_id;
-            $booking = DB::table('timebooking')
-                ->where('booking_id',$_booking_id)->get();
-            return view('profile',compact('user','booking') );
+        $user = Auth::user();
+        $_booking_id = Auth::user()->booking_id;
+        $booking = DB::table('timebooking')
+            ->where('booking_id',$_booking_id)->get();
+        $timebookingTable = DB::table('timebooking')->get();
+        $waitTable = DB::table('waitconfirm')
+            ->where('project_id',$user->project_id)->first();
+        $project = DB::table('project')
+            ->where('id',$user->id)->first();
+        return view('profile',['project'=>$project,'timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
         
     }
 
