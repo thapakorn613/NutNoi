@@ -78,7 +78,7 @@
                                 @endif
                                 </tr>
                             @endfor
-                            @endfor
+                            
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>

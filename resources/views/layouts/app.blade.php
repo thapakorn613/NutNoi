@@ -32,7 +32,8 @@
     <div id="app">
         <div class="navbar">
             <div class="navbar-inner">
-                <a>
+                
+                <a href="/home" class="">
                     <img src="{{ asset('images/logo.png') }}" width="120" height="90" alt="Logo" />
                         <!-- This is website logo -->
                 </a>
@@ -89,7 +90,7 @@
                             <li class="nav-item dropdown">
                                 @if (Auth::user()->type != "admin")
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ action('UserController@profile') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @endif 
                                     {{ Auth::user()->name }} 
                                 </a>
