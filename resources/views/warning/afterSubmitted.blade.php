@@ -21,7 +21,7 @@
                     +++++
                     <br>
                     <td>
-                        <a class="btn btn-success" href="/home/table" >back to show table page</a>
+                        <a class="btn btn-success" href="/table" >back to show table page</a>
                     </td>
                     <br>
                 </div>
