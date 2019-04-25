@@ -66,7 +66,7 @@
                         <div class="span4">
                             <div class="centered service">
                                 <div class="circle-border zoom-in">
-                                <a href="{{ action('UserController@firstAddBooking')}}" class="brand">
+                                <a href="{{ action('UserController@addproject_db')}}" class="brand">
                                     <img class="img-circle" src="images/diskette.png" alt="service 4">
                                 </a>
                                 </div>
