@@ -21,7 +21,7 @@
                             <td>{{$datatimeUser->datetime}}</td>
                             <td>
                                 <a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a>
-                                <a class="btn btn-primary" href="{{action('AdminController@sendEmail',$users->project_id)}}" >send Email </a>
+                                <a class="btn btn-primary" href="{{action('AdminController@toSendEmail',[$users->project_id])}}" >send Email </a>
                             </td>
                             </tr>
                         </table>
@@ -73,10 +73,6 @@
                                 @if ($users->booking_id == $waitTable->booking_id3)
                                 <td><a class="btn btn-success" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >confirmed</a></td>
                                 @else <td><a id="myBtn" class="btn btn-primary"  data-toggle="modal2" data-target="#myModal" >confirm</a></td>
-
-
-
-
                                 @endif
                             @endif
                         @endfor

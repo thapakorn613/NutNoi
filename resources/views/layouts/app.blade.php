@@ -48,8 +48,6 @@
                             <li class="active">
                                 <a href="/home">Home</a>
                             </li>
-                            
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -58,27 +56,24 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                            
-
                         @else
-
                             @if (Auth::user()->type != "admin" && Auth::user()->project_id != NULL && Auth::user()->haveWaitTable != NULL )
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('UserController@showTable') }}" >{{ __('ShowTable') }}</a>
                                 </li>
-                            @endif
-                            @if (Auth::user()->type != "admin")
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('UserController@profile') }}" >{{ __('Profile') }}</a>
                                 </li>
-                            @else 
+                            @endif
+                            @if (Auth::user()->type == "admin")
+                            
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('Project List') }}</a>
                             </li>
@@ -148,7 +143,10 @@
                     <div class="span5">
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
                     </div>
-                    
+                    <div class="span7">
+                       
+                        <div id="err-subscribe" class="error centered">Please provide valid email address.</div>
+                    </div>
                 </div>
             </div>
         </div>
