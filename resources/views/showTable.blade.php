@@ -61,6 +61,7 @@
                                    
                                 @endif
                                 </tr>
+                                @endfor
                                 @for ($i = 0; $i < count($timebookingTable ); $i++)
                                 @if ( $timebookingTable[$i]->project_id == $users->project_id)
                                     
