@@ -106,9 +106,33 @@ class UserController extends Controller
         $nTeacher3 = DB::table('teacher')
             ->where('id',$tProject->teacher_id3)->first();
         
-        $this->getjson($nTeacher1);
-        $this->getjson($nTeacher2);
-        $this->getjson($nTeacher3);
+        $teacher1array = $this->getjson($nTeacher1);
+        $teacher2array = $this->getjson($nTeacher2);
+        $teacher3array = $this->getjson($nTeacher3);
+        //echo gettype($teacher1array);
+
+        /*foreach ($teacher1array as $t1) {
+            echo json_encode($t1)."\n";
+        }/*
+        foreach ($teacher2array as $t2) {
+            echo "number2".$t2."\n";
+        }
+        foreach ($teacher3array as $t3) {
+            echo "number3".$t3."\n";
+        }*/
+        $intersecttime = $this->Intersect($teacher1array, $teacher2array, $teacher3array);
+        foreach ($intersecttime as $itst) {
+            $date = date('Y-m-d', strtotime($itst));
+            //$time = date('H:i:s', strtotime($itst));
+            $time = substr($itst,11,8);
+            $dtt = $date." ".$time;
+            //echo $time;
+            echo $dtt;
+            $this->insertdatetime($dtt);
+        }
+
+        
+       
 
 
         return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
@@ -120,6 +144,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    function Intersect($array1, $array2, $array3) 
+    { 
+        $result = array_intersect($array1, $array2, $array3); 
+        //echo gettype(array_intersect($array1, $array2, $array3)); 
+        //array_push($result,array_intersect($array1, $array2, $array3));
+
+        return($result); 
+    } 
+
+    public function insertdatetime($dt)
+    {
+        //$dtime = '2019-03-29 22:30:00';
+        $users = Auth::user();
+        DB::table('timebooking')->insert(
+            ['project_id' => $users->project_id,'datetime' => $dt]
+        );
+        
+       /* DB::table('waitconfirm')->insert(
+            ['project_id' => $users->project_id, 'booking_id1' => $id]
+        );*/
+    }
+
     public function getjson($url)
     {
         $curl = curl_init();
@@ -152,13 +198,28 @@ class UserController extends Controller
         echo $response->title;*/
         $response2 = json_decode($response);
         //$jss2 = json_decode($jss);
+        $datearray =  [];
         foreach ($response2->events as $i) {
-            echo $i->start_dt."\n"; 
-            echo $i->end_dt."\n";
-            echo "\n";
-            //echo $nTeacher1->teamup;
+            //echo $i->start_dt."\n"; 
+            //echo $i->end_dt."\n";
+            //$datearray =  array($i->start_dt);
+            array_push($datearray,$i->start_dt);
+            //$startdate = $i->start_dt;
+            //$ddate = substr($startdate,0,10);
+            //$date = date('Y-m-d', strtotime($startdate));
+            //$time = date('H:i:s', strtotime($startdate));
+            //echo $time;
           }
+        /*foreach ($datearray as $subdate) {
+            echo $subdate."\n";
         }
+        //print_r($datearray);
+        /*
+        for($i=0;$i < count($datearray);$i++){
+            echo $datearray[$i]; 
+        }*/
+        }
+        return($datearray);
     }
 
     public function update_to_database(Request $request, $id)
