@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -36,26 +35,36 @@
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
                                         <td><a class="btn btn-success" href="#" >up</a>
-                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >down</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>
                                         </tr>
                                     @endif
+                                @endif
+                                </tr>
+                            @endfor
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $users->project_id)
                                     @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
                                         <tr>
                                         <td>Booking ID 2</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="#" >up</a>
-                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,1])}}" >up</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,3])}}" >down</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID2')}}" >delete</a></td>
                                         </tr>
                                     @endif
+                                @endif
+                            </tr>
+                            @endfor
+                            @for ($i = 0; $i < count($timebookingTable ); $i++)
+                                @if ( $timebookingTable[$i]->project_id == $users->project_id)
                                     @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
                                         <tr>
                                         <td>Booking ID 3</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="#" >up</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,2])}}" >up</a>
                                         <a class="btn btn-warning" href="#" >down</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID3')}}" >delete</a></td>
                                         </tr>
@@ -63,6 +72,7 @@
                                 @endif
                                 </tr>
                             @endfor
+                            
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>
@@ -89,7 +99,6 @@
             </div>
             <div class="card">
                 <div class="card-header">Select your time for examination</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -107,7 +116,7 @@
                                 @if ( $timebookingTable[$i]->project_id == $users->project_id  )
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
+                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-primary">Add</a></td>
                                 @endif
                                 </tr>
                             @endfor
@@ -116,7 +125,7 @@
                                 @if ( $timebookingTable[$i]->project_id == $users->project_id && $timebookingTable[$i]->booking_id != $waitTable->booking_id1 && $timebookingTable[$i]->booking_id!= $waitTable->booking_id2&& $timebookingTable[$i]->booking_id!= $waitTable->booking_id3)
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-danger">Add</a></td>
+                                        <td><a href="{{ action('UserController@setBooking',$timebookingTable[$i]->booking_id)}}" class="btn btn-primary">Add</a></td>
                                 @endif
                                 </tr>
                             @endfor
@@ -128,6 +137,4 @@
     </div>
 </div>
 @endsection
-
-
 

@@ -17,7 +17,7 @@
                     **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด
                     <br>
                     <td>
-                        <a class="btn btn-success" href="/home/table" >back to Select Time</a>
+                        <a class="btn btn-success" href="/table" >back to Select Time</a>
                     </td>
                 </div>
             </div>
