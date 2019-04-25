@@ -122,15 +122,16 @@
     <div id="da-slider" class="da-slider" >
       
         <div class="mask"></div>
-        <div class="container">               
+                       
             
             <div class="offset0"> 
             @yield('content')
             </div>
           
-        </div>
+        
+  
     </div>
-
+  
        
        
         <!-- Newsletter section start -->
