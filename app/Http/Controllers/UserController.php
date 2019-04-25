@@ -205,6 +205,30 @@ class UserController extends Controller
             DB::table('project')->insert(
                 ['project_name' => $name, 'teacher_id1' => $t1, 'teacher_id2' => $t2, 'teacher_id3' => $t3]
             );
+            $temp1 = DB::table('teacher')->where('id',$t1)->first();
+            DB::table('teacher')
+            ->where('id',$t1)
+            ->update(['count2' => ($temp1->count2++)]);
+
+            $temp2 = DB::table('teacher')->where('id',$t2)->first();
+            DB::table('teacher')
+            ->where('id', $t2)
+            ->update(['count2' => ($temp2->count2++)]);
+
+            $temp3 = DB::table('teacher')->where('id',$t3)->first();
+            DB::table('teacher')
+            ->where('id', $t3)
+            ->update(['count2' => ($temp1->count3++)]);
+
+
+
+
+
+
+
+
+
+
 
 
         $p_id =     DB::table('project')
@@ -305,6 +329,18 @@ class UserController extends Controller
     {
         $users = User::all()->toArray();
         return view('admin.manager' , compact('users'));
+
+    }
+
+    public function showstatic()
+    {
+
+
+
+
+
+        $teacher = DB::table('teacher')->get();
+        return view('showstatic' , ['teacher' => $teacher]);
 
     }
 

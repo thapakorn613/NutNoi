@@ -40,6 +40,7 @@ Route::any('/booking/addFirst',  'UserController@firstAddBooking');
 Route::any('/showproject',  'UserController@showproject');
 Route::get('/addproject', 'AdminController@addproject' );
 Route::any('/addproject_db/addprojectdb', 'AdminController@addproject_db' );
+Route::any('/showstatic',  'UserController@showstatic');
 
 Route::get('/table', 'UserController@showTable' );
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
