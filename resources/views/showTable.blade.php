@@ -40,13 +40,11 @@
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>
                                         </tr>
                                     @endif
-
                                 @endif
                                 </tr>
                             @endfor
                             @for ($i = 0; $i < count($timebookingTable ); $i++)
                                 @if ( $timebookingTable[$i]->project_id == $users->project_id)
-
                                     @if ($waitTable->booking_id2 == $timebookingTable[$i]->booking_id)
                                         <tr>
                                         <td>Booking ID 2</td>
@@ -57,12 +55,13 @@
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID2')}}" >delete</a></td>
                                         </tr>
                                     @endif
-
+                                   
                                 @endif
                                 </tr>
+                                @endfor
                                 @for ($i = 0; $i < count($timebookingTable ); $i++)
                                 @if ( $timebookingTable[$i]->project_id == $users->project_id)
-
+                                    
                                     @if ($waitTable->booking_id3 == $timebookingTable[$i]->booking_id)
                                         <tr>
                                         <td>Booking ID 3</td>
