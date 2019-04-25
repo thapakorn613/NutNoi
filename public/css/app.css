@@ -2105,7 +2105,7 @@ textarea.form-control {
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .form-text {
@@ -4804,8 +4804,8 @@ input[type=button].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: rgb(255, 140, 9);
+  border-bottom: 1px solid rgb(255, 140, 9);
 }
 
 .card-header:first-child {

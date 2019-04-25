@@ -6,20 +6,20 @@
         <div class="col-md-8">  
             <div class="card">
                 <div class="card-header">Successful !!!</div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-                    Your time has been selected, Please check on your profile.
                     
+                    @endif
+                    **** หน้านี้ควรจะเด้งเป็น ป็อบอัพให้กดแค่ ok แล้วปิด <br><br>
                     <br>
                     <td>
-
-                        <a class="btn btn-success" href="/manager" >back to Manager</a>
-                        
+                        <td><a class="btn btn-success" href="/table" >Go to Manager</a></td>
                     </td>
+                    <br>
                 </div>
             </div>
         </div>

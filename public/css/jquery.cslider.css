@@ -31,7 +31,7 @@
     filter: alpha(opacity=85);
 }
 .da-slider .container {
-    margin-top:-30px;
+    margin-top:30px;
     position:relative;
     height:100%;
 }
