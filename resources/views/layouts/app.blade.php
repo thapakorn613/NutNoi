@@ -58,6 +58,12 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showstatic') }}" >{{ __('Statistics') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('Project List') }}</a>
+                            </li>
                             @if (Auth::user()->type != "admin" && Auth::user()->project_id != NULL && Auth::user()->haveWaitTable != NULL )
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('UserController@showTable') }}" >{{ __('ShowTable') }}</a>
@@ -67,23 +73,14 @@
                                 </li>
                             @endif
                             @if (Auth::user()->type == "admin")
-                            
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                                    <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('Add Project to Student') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ action('AdminController@admin') }}" >{{ __('Manager') }}</a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('UserController@showstatic') }}" >{{ __('showstiti') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('Project List') }}</a>
-                            </li>
+                            
                             @if (Auth::user()->type != "admin")
                                 @if (Auth::user()->haveWaitTable != NULL && Auth::user()->project_id == NULL)
                                     <li class="nav-item">
@@ -117,7 +114,6 @@
                         </ul>
                     </div>
                     <!-- End main navigation -->
-                
             </div>   
     </div> 
     <div  class="da-slider" >

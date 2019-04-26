@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
                     <div class="alert alert-primary" role="alert">
@@ -23,7 +25,7 @@
                         <td>{{$users->project_id}}</td>
                         <td>{{$project->project_name}}</td>
                         </tr>
-                    </table>  
+                    </table>
                     @if ( $users->booking == NULL && $waitTable->status_confirm == NULL)
                         @if ($waitTable->status_submit == NULL )
                             <div class="alert alert-danger" role="alert">
@@ -47,8 +49,8 @@
                                         <td>Booking ID 1</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="#" >up</a>
-                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >down</a>
+                                        <td><a class="btn btn-success" href="#" >↑</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -62,8 +64,8 @@
                                         <td>Booking ID 2</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,1])}}" >up</a>
-                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,3])}}" >down</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,1])}}" >↑</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,3])}}" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID2')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -77,8 +79,8 @@
                                         <td>Booking ID 3</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,2])}}" >up</a>
-                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,2])}}" >↑</a>
+                                        <a class="btn btn-warning" href="#" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID3')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -89,13 +91,13 @@
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>
-                            <td><a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" >SUBMIT</a></td>   
-                        </table>
+                            <td><a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" href="{{ action('UserController@submitted',[$users->project_id])}}" >SUBMIT</a></td>   
+                        </table> 
                     @else
                         <table class="table table-bordered table-hover">
-                        <tr>
-                        <td><a class="btn btn-success" href="#" >+++++++++++++++ ตอนนี้ Admin ได้ยืนยันการจองเวลาของคุณเเล้ว คุณได้เวลาตั้งนี้ ++++++++++++++</a></td>
-                        </tr>
+                        <div class="alert alert-success" role="alert">
+                            ตอนนี้คุณได้ทำการ Submit เรียบร้อยเเล้ว กรุณารอการยืนยันจาก Admin
+                        </div>
                         </table>
                         <table class="table table-bordered table-striped">
                         <tr>
@@ -160,6 +162,7 @@
       </div>
     </div>
   </div>
+
 
   
 

@@ -7,7 +7,11 @@
         <div class="col-md-8">
             @if ( $waitTable->status_confirm == '1')
                 <div class="card">
-                    <div class="card-header">ช่วงเวลาที่ Confirm ไว้ ณ ตอนนี้ </div>
+
+                    <div class="card-header"></div>
+                    <div class="alert alert-success" role="alert">
+                        <h5>ช่วงเวลาที่ Confirm ไว้ ณ ตอนนี้ </h5>
+                    </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <tr>
@@ -21,9 +25,7 @@
                             <td>{{$users->booking_id}}</td>
                             <td>{{$datatimeUser->datetime}}</td>
                             <td>
-                            <a class="btn btn-danger" onclick="document.getElementById('id04').style.display='block'" class="w3-button w3-black">Cancel</a>
-
-                                <a class="btn btn-danger" href="{{ action('AdminController@cancel',[$users->project_id])}}" >Cancel</a>
+                                <a class="btn btn-danger" onclick="document.getElementById('id04').style.display='block'" class="w3-button w3-black">Cancel</a>
                                 <a class="btn btn-primary" href="{{action('AdminController@toSendEmail',[$users->project_id])}}" >send Email </a>
                             </td>
                             </tr>
@@ -32,8 +34,10 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Select your time for examination</div>
-
+                <div class="card-header"></div>
+                <div class="alert alert-success" role="alert">
+                        <h2>Select your time for examination</h2>
+                </div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -41,7 +45,9 @@
                         </div>
                     @endif
                     <table class="table table-bordered table-striped">
-                        Project_id : {{$waitTable->project_id}}
+                        <div class="alert alert-red" role="alert">
+                            <h4>Project_id : {{$waitTable->project_id}}</h4>
+                        </div>
                         <td>Booking ID</td>
                         <td>Time</td>
                         <td>Confirm here</td>
@@ -86,9 +92,6 @@
         </div>
     </div>
 </div>
-
-
-  
     <div id="id01" class="w3-modal">
       <div class="w3-modal-content">
         <div class="w3-container">

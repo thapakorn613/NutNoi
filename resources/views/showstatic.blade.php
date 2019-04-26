@@ -1,20 +1,12 @@
-
-
-    <?php
-$dataPoints = array( 
-    
-    
+<?php
+	$dataPoints = array(
         array("y" =>$teacher[0]->count2, "label" => $teacher[0]->name  ),
         array("y" =>$teacher[1]->count2, "label" => $teacher[1]->name  ),
         array("y" =>$teacher[2]->count2, "label" => $teacher[2]->name  ),
         array("y" =>$teacher[3]->count2, "label" => $teacher[3]->name  ),
         array("y" =>$teacher[4]->count2, "label" => $teacher[4]->name  ),
-        array("y" =>$teacher[5]->count2, "label" => $teacher[5]->name  )
-    
-	
-	
-);
- 
+        array("y" =>$teacher[5]->count2, "label" => $teacher[5]->name  )	
+	);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -44,8 +36,8 @@ chart.render();
 </head>
 <body>
 @extends('layouts.app')
-
 @section('content')
+<br><br>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 @endsection
