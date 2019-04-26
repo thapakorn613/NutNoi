@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeUser;
+
 
 class UserController extends Controller
 {
@@ -143,6 +146,7 @@ class UserController extends Controller
     { 
         $result = array_intersect($array1, $array2, $array3); 
         return($result); 
+
     } 
 
     public function insertdatetime($dt)
@@ -176,7 +180,7 @@ class UserController extends Controller
         }
 
         if($num == 0){
-            echo json_encode($timetest);
+            //echo json_encode($timetest);
             DB::table('timebooking')->insert(
             ['project_id' => $users->project_id,'datetime' => $dt]
             );
@@ -368,6 +372,15 @@ class UserController extends Controller
         return view('profile',['project'=>$project,'timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
         
     }
+
+    public function send_email()
+    {
+    $user_name = 'John Anderson';
+    $to = 'nutttapong.pongkam@gmail.com';
+    Mail::to($to)->send(new WelcomeUser($user_name));
+    return 'Mail sent successfully';
+    }
+    
 
 
 

@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeUser;
+
 class AdminController extends Controller
 {
     //
@@ -107,6 +110,8 @@ class AdminController extends Controller
 
     public function toSendEmail($p_id)
     {
+        $users = DB::table('users')
+            ->where('project_id',$p_id)->first();
         $tProject = DB::table('project')
             ->where('id',$p_id)->first();
         $teacher1 = DB::table('teacher')
@@ -132,8 +137,24 @@ class AdminController extends Controller
         DB::table('project')
             ->where('id',$p_id)
             ->update(['send_email' => 1]);
-        return view('warning.afterSendEmail'); 
+
+
+        /*$user_name = 'John Anderson';
+        $to = 'nutnoicpe@gmail.com';
+        Mail::to($to)->send(new WelcomeUser($user_name));
+        //return 'Mail sent successfully';*/
+
+
+        return view('warning/afterSendEmail'); 
     } 
+
+    public function send_email()
+    {
+    $user_name = 'Artronin';
+    $to = 'nutnoicpe@gmail.com';
+    Mail::to($to)->send(new WelcomeUser($user_name));
+    return 'Mail sent successfully';
+    }
 
    
 }
