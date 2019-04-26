@@ -64,7 +64,9 @@
 
                         <tr>
                         <td> ++ </td>
-                        <td> <a class="btn btn-success" href="{{action('AdminController@sendEmail',[$users->project_id])}}" >Send Email</a> </td>
+                        <td> 
+                            <a class="btn btn-success" href="{{ action('AdminController@send_email')}}" >Send Email</a> </td>
+                           
                         <td> ++ </td>
                         </tr>
                     </table>

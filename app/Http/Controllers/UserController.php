@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeUser;
+
 
 class UserController extends Controller
 {
@@ -131,6 +134,19 @@ class UserController extends Controller
             $this->insertdatetime($dtt);
         }
 
+        $msg = "First line of text\nSecond line of text";
+
+        // use wordwrap() if lines are longer than 70 characters
+        $msg = wordwrap($msg,70);
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: <webmaster@example.com>' . "\r\n";
+        $headers .= 'Cc: myboss@example.com' . "\r\n";
+        echo $msg;
+        // send email
+        mail("nuttapong.pongkam@gmail.com","My subject",$msg,$headers);
 
 
         
@@ -150,6 +166,7 @@ class UserController extends Controller
     { 
         $result = array_intersect($array1, $array2, $array3); 
         return($result); 
+
     } 
 
     public function insertdatetime($dt)
@@ -172,18 +189,18 @@ class UserController extends Controller
         foreach ($timeUser as $timetest) {
             
             if($timetest->datetime == $dt){
-                echo "allreadytime";
+                //echo "allreadytime";
                 $num = '1';
                 break;
             }else{
                 $num = '0';
-                echo"yes";
+                //echo"yes";
             }
 
         }
 
         if($num == 0){
-            echo json_encode($timetest);
+            //echo json_encode($timetest);
             DB::table('timebooking')->insert(
             ['project_id' => $users->project_id,'datetime' => $dt]
             );
@@ -389,6 +406,15 @@ class UserController extends Controller
         return view('profile',['project'=>$project,'timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
         
     }
+
+    public function send_email()
+    {
+    $user_name = 'John Anderson';
+    $to = 'nutttapong.pongkam@gmail.com';
+    Mail::to($to)->send(new WelcomeUser($user_name));
+    return 'Mail sent successfully';
+    }
+    
 
 
 
