@@ -156,7 +156,10 @@
     <div class="w3-modal-content">
       <div class="w3-container">
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        <h3>click ok for add</h3>
+        <div class="alert alert-success" role="alert">
+        <h3>ตอนนี้คุณได้ทำการ ยืนยัน เรียบร้อยเเล้ว </h3>
+    
+        </div>
         <center><h1><td><a class="btn btn-primary" href="{{ action('UserController@submitted',$users->project_id)}}"  >ok</a></td><h1></center>
      
       </div>

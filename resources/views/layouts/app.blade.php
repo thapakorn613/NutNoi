@@ -90,8 +90,9 @@
                             @endif
                             <li class="nav-item dropdown">
                                 @if (Auth::user()->type != "admin")
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ action('UserController@profile') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @else <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a  class="nav-link " href="#" >
+                                @else 
+                                    <a class="nav-link " href="/home" >
                                 @endif 
                                     {{ Auth::user()->name }} 
                                 </a>

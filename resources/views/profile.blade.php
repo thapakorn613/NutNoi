@@ -4,8 +4,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Profile</div>
+                <div class="span12">
+                         <div class="centered service">
+                                <div class="circle-border">
+                                <a  class="brand">
+                                    <img class="img-circle" src="images/user.png" alt="service 4">
+                                </a>
+                                </div>
+                                
+                                <h3>{{$user->name}}</h3>
+                            
+                            </div>
+                        </div>
+                <div class="card">
+                
                 <div class="card-body ">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -13,8 +25,7 @@
                         </div>
                     @endif
                     <table class="table table-bordered table-striped">
-                    <tr><th>first name</th>
-                    <td>{{$user->name}}</td>  
+                   
                     <tr><th>Email</th>
                     <td>{{$user->email}}</td> 
                     <tr>
