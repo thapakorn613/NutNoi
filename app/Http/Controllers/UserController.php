@@ -120,6 +120,7 @@ class UserController extends Controller
         $teacher3array = $this->getjson($nTeacher3);
 
         $intersecttime = $this->Intersect($teacher1array, $teacher2array, $teacher3array);
+        //echo json_encode($intersecttime);
         foreach ($intersecttime as $itst) {
             $date = date('Y-m-d', strtotime($itst));
             //$time = date('H:i:s', strtotime($itst));
@@ -166,18 +167,18 @@ class UserController extends Controller
 
         curl_setopt_array($curl, array(
         //CURLOPT_URL => "https://teamup.com/ksd952dt39h2ar9gxy/events?startDate=2019-04-21&endDate=2019-04-23",
-        CURLOPT_URL => $url->teamup."/events?startDate=2019-04-21&endDate=2019-04-23",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "Postman-Token: 97102fac-3f8c-4625-9d45-e860cdcf3da2",
-            "Teamup-Token: 7f889d147aa973f27bd3031666a619bb6cd7847fd9ff502052302036135c0693",
-            "cache-control: no-cache"
-        ),
+            CURLOPT_URL => $url->teamup."/events?startDate=2019-04-21&endDate=2019-04-23",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Postman-Token: 97102fac-3f8c-4625-9d45-e860cdcf3da2",
+                "Teamup-Token: 7f889d147aa973f27bd3031666a619bb6cd7847fd9ff502052302036135c0693",
+                "cache-control: no-cache"
+            ),
         ));
     
         $response = curl_exec($curl);
@@ -186,19 +187,17 @@ class UserController extends Controller
         curl_close($curl);
     
         if ($err) {
-        echo "cURL Error #:" . $err;
-        } else {
-
-        $response2 = json_decode($response);
-        //$jss2 = json_decode($jss);
-        $datearray =  [];
-        foreach ($response2->events as $i) {
-
-            array_push($datearray,$i->start_dt);
-
-          }
-
+            echo "cURL Error #:" . $err;
+        } 
+        else {
+            $response2 = json_decode($response);
+            //$jss2 = json_decode($jss);
+            $datearray =  [];
+            foreach ($response2->events as $i) {
+                array_push($datearray,$i->start_dt);
+            }
         }
+        //echo json_encode($datearray);
         return($datearray);
     }
 

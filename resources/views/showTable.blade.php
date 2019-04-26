@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
                     <div class="alert alert-primary" role="alert">
@@ -47,8 +49,8 @@
                                         <td>Booking ID 1</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="#" >up</a>
-                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >down</a>
+                                        <td><a class="btn btn-success" href="#" >↑</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,2])}}" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID1')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -62,8 +64,8 @@
                                         <td>Booking ID 2</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,1])}}" >up</a>
-                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,3])}}" >down</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,1])}}" >↑</a>
+                                        <a class="btn btn-warning" href="{{ action('UserController@sliding',[9,3])}}" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID2')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -77,8 +79,8 @@
                                         <td>Booking ID 3</td>
                                         <td>{{$timebookingTable[$i]->booking_id}}</td>
                                         <td>{{$timebookingTable[$i]->datetime}}</td>
-                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,2])}}" >up</a>
-                                        <a class="btn btn-warning" href="#" >down</a>
+                                        <td><a class="btn btn-success" href="{{ action('UserController@sliding',[8,2])}}" >↑</a>
+                                        <a class="btn btn-warning" href="#" >↓</a>
                                         <a class="btn btn-danger" href="{{ action('UserController@deleteBookingID3')}}" >delete</a></td>
                                         </tr>
                                     @endif
@@ -160,6 +162,7 @@
       </div>
     </div>
   </div>
+
 
   
 
