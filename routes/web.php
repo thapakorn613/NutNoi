@@ -45,7 +45,7 @@ Route::any('/showstatic',  'UserController@showstatic');
 
 Route::get('/table', 'UserController@showTable' );
 Route::any('/admincheck/{id?}',  'UserController@admincheck');
-Route::any('/home/table/submitted/{id?}',  'UserController@submitted');
+Route::any('/table/submitted/{id?}',  'UserController@submitted');
 Route::any('/setBooking/{id}', 'UserController@setBooking');
 Route::any('/setBooking2/{id?}/{asd?}', 'UserController@setBooking2');
 Route::any('/home/table/delete/booking_id1/{id?}', 'UserController@deleteBookingID1');

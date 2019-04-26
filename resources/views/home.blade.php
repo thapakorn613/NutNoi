@@ -63,11 +63,20 @@
                             </div>
                         </div>
                     @elseif ($users->project_id != NULL && $users->booking_id != NULL)
-                  
+                    <div class="span4">
+                            <div class="centered service">
+                                <div class="circle-border">
+                                <a><img class="img-circle" src="images/archive2.png" alt="service 1"></a>
+                                </div>
+                            <h3>จองคิว</h3>
+                            </div>
+                        </div>
                         <div class="span4">
                             <div class="centered service">
                                 <div class="circle-border zoom-in">
-                                    <img class="img-circle" src="images/note.png" alt="service 4">
+                                <a href="/profile" class="brand">
+                                    <img class="img-circle" src="images/file.png" alt="service 2">
+                                </a>
                                 </div>
                                 <h3>โปรไฟล์</h3>
                             
@@ -76,19 +85,11 @@
                         <div class="span4">
                             <div class="centered service">
                                 <div class="circle-border zoom-in">
-                                    <img class="img-circle" src="images/note.png" alt="service 4">
+                                <a href="/table" class="brand">
+                                     <img class="img-circle"   src="images/archive.png" alt="service 3">
+                                </a>
                                 </div>
-                                <h3>โปรไฟล์</h3>
-                            
-                            </div>
-                        </div>
-                       
-                        <div class="span4">
-                            <div class="centered service">
-                                <div class="circle-border zoom-in">
-                                    <img class="img-circle" src="images/note.png" alt="service 4">
-                                </div>
-                                <h3>โปรไฟล์</h3>
+                                <h3>แสดงการจองเวลา</h3>
                             
                             </div>
                         </div>

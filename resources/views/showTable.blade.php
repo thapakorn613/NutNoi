@@ -25,7 +25,7 @@
                         <td>{{$users->project_id}}</td>
                         <td>{{$project->project_name}}</td>
                         </tr>
-                    </table>  
+                    </table>
                     @if ( $users->booking == NULL && $waitTable->status_confirm == NULL)
                         @if ($waitTable->status_submit == NULL )
                             <div class="alert alert-danger" role="alert">
@@ -91,13 +91,13 @@
                         </table>
                         <table class="table table-bordered table-hover">
                             <td>You can comfirm to submit</td>
-                            <td><a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" >SUBMIT</a></td>   
-                        </table>
+                            <td><a class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" href="{{ action('UserController@submitted',[$users->project_id])}}" >SUBMIT</a></td>   
+                        </table> 
                     @else
                         <table class="table table-bordered table-hover">
-                        <tr>
-                        <td><a class="btn btn-success" href="#" >+++++++++++++++ ตอนนี้ Admin ได้ยืนยันการจองเวลาของคุณเเล้ว คุณได้เวลาตั้งนี้ ++++++++++++++</a></td>
-                        </tr>
+                        <div class="alert alert-success" role="alert">
+                            ตอนนี้คุณได้ทำการ Submit เรียบร้อยเเล้ว กรุณารอการยืนยันจาก Admin
+                        </div>
                         </table>
                         <table class="table table-bordered table-striped">
                         <tr>

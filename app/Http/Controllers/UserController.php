@@ -130,13 +130,6 @@ class UserController extends Controller
             //echo $dtt;
             $this->insertdatetime($dtt);
         }
-
-
-
-        
-       
-
-
         return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
     }
     /**
@@ -172,12 +165,12 @@ class UserController extends Controller
         foreach ($timeUser as $timetest) {
             
             if($timetest->datetime == $dt){
-                echo "allreadytime";
+                //echo "allreadytime";
                 $num = '1';
                 break;
             }else{
                 $num = '0';
-                echo"yes";
+                //echo"yes";
             }
 
         }
@@ -354,17 +347,6 @@ class UserController extends Controller
             ->where('id', $t3)
             ->update(['count2' => $num3]);
 
-
-
-
-
-
-
-
-
-
-
-
         $p_id =     DB::table('project')
         ->where('project_name',$name)->first();
 
@@ -491,14 +473,8 @@ class UserController extends Controller
 
     public function showstatic()
     {
-
-
-
-
-
         $teacher = DB::table('teacher')->get();
         return view('showstatic' , ['teacher' => $teacher]);
-
     }
 
     public function edittime2($id2)
