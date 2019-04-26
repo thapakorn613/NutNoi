@@ -17,7 +17,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-bordered table-striped ">
+                    <table class="table table-bordered">
                         <tr> 
                         <th>Project ID</th>
                         <th>Name     Project</th>
