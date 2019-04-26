@@ -76,6 +76,12 @@
                                 </li>
                             @endif
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ action('AdminController@addproject') }}" >{{ __('adminaddP') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@showstatic') }}" >{{ __('showstiti') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ action('UserController@showproject') }}" >{{ __('Project List') }}</a>
                             </li>
                             @if (Auth::user()->type != "admin")
@@ -114,18 +120,19 @@
                 
             </div>   
     </div> 
-    <div id="da-slider" class="da-slider">
+    <div  class="da-slider" >
       
         <div class="mask"></div>
-        <div class="container">               
-            
-            <div class="offset0"> 
+                       
+        <div class="container">     
             @yield('content')
+            
             </div>
-          
-        </div>
+        
+  
     </div>
-
+   
+  
        
        
         <!-- Newsletter section start -->

@@ -104,6 +104,39 @@ class UserController extends Controller
             ->where('id',$users->project_id)->first();
         $timeUser = DB::table('timebooking')
             ->where('project_id',$users->project_id)->first();
+        //$timeTeacher = DB::table('teacher')
+          //  ->where('project_id',$users->project_id)->first();
+        $tProject = DB::table('project')
+            ->where('id',$users->project_id)->first();
+        $nTeacher1 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id1)->first();
+        $nTeacher2 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id2)->first();
+        $nTeacher3 = DB::table('teacher')
+            ->where('id',$tProject->teacher_id3)->first();
+        
+        $teacher1array = $this->getjson($nTeacher1);
+        $teacher2array = $this->getjson($nTeacher2);
+        $teacher3array = $this->getjson($nTeacher3);
+
+        $intersecttime = $this->Intersect($teacher1array, $teacher2array, $teacher3array);
+        //echo json_encode($intersecttime);
+        foreach ($intersecttime as $itst) {
+            $date = date('Y-m-d', strtotime($itst));
+            //$time = date('H:i:s', strtotime($itst));
+            $time = substr($itst,11,8);
+            $dtt = $date." ".$time;
+            //echo $time;
+            //echo $dtt;
+            $this->insertdatetime($dtt);
+        }
+
+
+
+        
+       
+
+
         return view('showTable', ['timeUser'=>$timeUser,'timebookingTable' => $timebookingTable,'project'=>$project,'users'=>$users,'waitTable' => $waitTable]);
     }
     /**
@@ -113,6 +146,93 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    function Intersect($array1, $array2, $array3) 
+    { 
+        $result = array_intersect($array1, $array2, $array3); 
+        return($result); 
+    } 
+
+    public function insertdatetime($dt)
+    {
+        //$dtime = '2019-03-29 22:30:00';
+        //echo json_encode($dt);
+        $users = Auth::user();
+        $timeUser = DB::table('timebooking')
+        ->where('project_id',$users->project_id)->get();
+        //echo json_encode($timeUser[0]->datetime);
+        //echo $dt;
+        /*if($timeUser->datetime == $dt){
+            echo "allreadytime";
+        }else{
+            DB::table('timebooking')->insert(
+            ['project_id' => $users->project_id,'datetime' => $dt]
+            );
+        }*/
+
+        foreach ($timeUser as $timetest) {
+            
+            if($timetest->datetime == $dt){
+                echo "allreadytime";
+                $num = '1';
+                break;
+            }else{
+                $num = '0';
+                echo"yes";
+            }
+
+        }
+
+        if($num == 0){
+            echo json_encode($timetest);
+            DB::table('timebooking')->insert(
+            ['project_id' => $users->project_id,'datetime' => $dt]
+            );
+        }
+
+        
+        
+
+    }
+
+    public function getjson($url)
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        //CURLOPT_URL => "https://teamup.com/ksd952dt39h2ar9gxy/events?startDate=2019-04-21&endDate=2019-04-23",
+            CURLOPT_URL => $url->teamup."/events?startDate=2019-04-21&endDate=2019-04-23",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Postman-Token: 97102fac-3f8c-4625-9d45-e860cdcf3da2",
+                "Teamup-Token: 7f889d147aa973f27bd3031666a619bb6cd7847fd9ff502052302036135c0693",
+                "cache-control: no-cache"
+            ),
+        ));
+    
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+    
+        curl_close($curl);
+    
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } 
+        else {
+            $response2 = json_decode($response);
+            //$jss2 = json_decode($jss);
+            $datearray =  [];
+            foreach ($response2->events as $i) {
+                array_push($datearray,$i->start_dt);
+            }
+        }
+        //echo json_encode($datearray);
+        return($datearray);
+    }
 
     public function update_to_database(Request $request, $id)
 
@@ -199,7 +319,7 @@ class UserController extends Controller
         $t3 = $request->get('teacher3');
         $name = $request->get('name');
         
-        echo $t2;
+        
 
         if($t1==$t2 || $t1==$t3 || $t2==$t3)
         {
@@ -214,6 +334,35 @@ class UserController extends Controller
             DB::table('project')->insert(
                 ['project_name' => $name, 'teacher_id1' => $t1, 'teacher_id2' => $t2, 'teacher_id3' => $t3]
             );
+            $temp1 = DB::table('teacher')->where('id',$t1)->first();
+            $num1 = $temp1->count2 + 1;
+
+            echo $num1;
+            DB::table('teacher')
+            ->where('id',$t1)
+            ->update(['count2' => $num1]);
+
+            $temp2 = DB::table('teacher')->where('id',$t2)->first();
+            $num2 = $temp2->count2 + 1;
+            DB::table('teacher')
+            ->where('id', $t2)
+            ->update(['count2' => $num2]);
+
+            $temp3 = DB::table('teacher')->where('id',$t3)->first();
+            $num3 = $temp3->count2 + 1;
+            DB::table('teacher')
+            ->where('id', $t3)
+            ->update(['count2' => $num3]);
+
+
+
+
+
+
+
+
+
+
 
 
         $p_id =     DB::table('project')
@@ -225,11 +374,16 @@ class UserController extends Controller
                 ->update(['project_id' => $p_id->id]);
         }
 
-            $user = Auth::user();
-            $_booking_id = Auth::user()->booking_id;
-            $booking = DB::table('timebooking')
-                ->where('booking_id',$_booking_id)->get();
-            return view('profile',compact('user','booking') );
+        $user = Auth::user();
+        $_booking_id = Auth::user()->booking_id;
+        $booking = DB::table('timebooking')
+            ->where('booking_id',$_booking_id)->get();
+        $timebookingTable = DB::table('timebooking')->get();
+        $waitTable = DB::table('waitconfirm')
+            ->where('project_id',$user->project_id)->first();
+        $project = DB::table('project')
+            ->where('id',$user->id)->first();
+        return view('profile',['project'=>$project,'timebookingTable' => $timebookingTable,'booking'=>$booking,'user'=>$user,'waitTable' => $waitTable]);
         
     }
 
@@ -332,6 +486,18 @@ class UserController extends Controller
     {
         $users = User::all()->toArray();
         return view('admin.manager' , compact('users'));
+
+    }
+
+    public function showstatic()
+    {
+
+
+
+
+
+        $teacher = DB::table('teacher')->get();
+        return view('showstatic' , ['teacher' => $teacher]);
 
     }
 

@@ -71,14 +71,12 @@
                         @for ($i = 0; $i < count($time); $i++)
                             @if ( $time[$i]->booking_id == $waitTable->booking_id3)
                                 <tr>
-                                <td>{{$waitTable->booking_id3}}</td>
+                                    <td>{{$waitTable->booking_id3}}</td>
                                 <td>{{$time[$i]->datetime}}</td>
                                 @if ($users->booking_id == $waitTable->booking_id3)
                                 <td><a class="btn btn-success" href="{{ action('AdminController@confirm',[$waitTable->booking_id3 , $waitTable->project_id])}}" >confirmed</a></td>
                                 @else <td><button onclick="document.getElementById('id03').style.display='block'" class="w3-button w3-black">confirm</button></td>
-                                
-
-
+                            
                                 @endif
                             @endif
                         @endfor
